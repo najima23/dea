@@ -1,0 +1,25 @@
+.divider {
+    margin: 0 12px;
+  }
+  
+  .menu-link {
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-right: 12px;
+  }
+  
+  .active {
+    color: rgba(0, 0, 0, 0.87);
+    background-color: white;
+  }
+  
+  .error-box .red {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .error-box .green {
+    color: green;
+    font-weight: bold;
+  }
+  
