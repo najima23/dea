@@ -37,19 +37,18 @@
     </div>
 
     <div class="navbar-end">
-      <div class="navbar-item">
-        <div *ngIf="(count$ | async)!.username">
-          <div>{{(count$ | async)!.username }}</div>
-      </div>
-      
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link"> More </a>
+ 
+
+      <div *ngIf="(count$ | async)!.username">
+      <div class="navbar-item has-dropdown is-hoverable ">
+        
+        <a class="navbar-link"> {{(count$ | async)!.username }}</a>
 
         <div class="navbar-dropdown">
           <a class="navbar-item"> Log-out </a>
         </div>
-        
       </div>
+  
 
         <div *ngIf="!(count$ | async)!.username" class="buttons">
           <a
