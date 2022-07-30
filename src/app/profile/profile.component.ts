@@ -1,4 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+interface User{
+  id:string;
+  username:string;
+  firstName:string;
+  lastName:string;
+  email: string
+}
 
 @Component({
   selector: 'app-profile',
@@ -6,8 +16,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  count$: Observable<User>;
 
-  constructor() { }
+  constructor(private store: Store<{ count: User }>) {
+    this.count$ = this.store.select('count');
+  }
 
   ngOnInit(): void {
   }

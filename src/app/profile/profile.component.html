@@ -1,31 +1,60 @@
-
 <div class="container is-max-desktop">
-<div class="field">
+  <div class="field">
     <label class="label">Username</label>
     <div class="control">
-      <input class="input" type="text" placeholder="Text input" value= "Najima">
-    </div>
-  </div>
-  
-  <div class="field">
-    <label class="label">Name</label>
-    <div class="control">
-      <input class="input" type="text" placeholder="Text input" value= "Najima">
+      <input
+        class="input"
+        type="text"
+        placeholder="Text input"
+        value="{{ (count$ | async)!.username }}"
+        readonly
+      />
     </div>
   </div>
 
   <div class="field">
     <label class="label">Vorname</label>
     <div class="control">
-      <input class="input" type="text" placeholder="Text input" value= "Najima">
+      <input
+        class="input"
+        type="text"
+        placeholder="Text input"
+        value="{{ (count$ | async)!.firstName }}"
+        readonly
+      />
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Name</label>
+    <div class="control">
+      <input
+        class="input"
+        type="text"
+        placeholder="Text input"
+        value="{{ (count$ | async)!.lastName }}"
+        readonly
+      />
     </div>
   </div>
 
   <div class="field">
     <label class="label">Email</label>
     <div class="control">
-      <input class="input" type="text" placeholder="Text input" value= "Najima">
+      <input
+        class="input"
+        type="text"
+        placeholder="Text input"
+        value="{{ (count$ | async)!.email }}"
+        readonly
+      />
     </div>
   </div>
 
+  <a
+    class="button is-large"
+    href="http://localhost:8080/auth/realms/master/account/#/personal-info"
+  >
+    Edit-Profile</a
+  >
 </div>
