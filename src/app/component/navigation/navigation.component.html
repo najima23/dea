@@ -37,30 +37,33 @@
     </div>
 
     <div class="navbar-end">
- 
-
       <div *ngIf="(count$ | async)!.username">
-      <div class="navbar-item has-dropdown is-hoverable ">
-        
-        <a class="navbar-link"> {{(count$ | async)!.username }}</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link"> {{ (count$ | async)!.username }}</a>
 
-        <div class="navbar-dropdown">
-          <a class="navbar-item"> Log-out </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" routerLink = 'profile' routerLinkActive = "active"> View Profile </a>
+            <a class="navbar-item" href="http://localhost:8080/auth/realms/master/account" > Edit-Profile </a>
+            <hr class="navbar-divider" />
+            <a
+              class="navbar-item"
+              href="http://localhost:8080/auth/realms/master/protocol/openid-connect/logout?redirect_uri=http://localhost:4200/home"
+              >Logout
+            </a>
+          </div>
         </div>
-      </div>
-  
 
-        <div *ngIf="!(count$ | async)!.username" class="buttons">
-          <a
-          
-            class="button is-light"
-            routerLink="login"
-            routerLinkActive="active"
-          >
-            Log in
-          </a>
-        </div>
+
       </div>
+    </div>
+    <div *ngIf="!(count$ | async)!.username" class="buttons">
+      <a
+        class="button is-light"
+        routerLink="login"
+        routerLinkActive="active"
+      >
+        Log in
+      </a>
     </div>
   </div>
 </nav>

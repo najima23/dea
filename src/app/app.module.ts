@@ -22,7 +22,8 @@ import { counterReducer } from './counter.reducer';
 
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment'; // Angular CLI environment
+import { environment } from '../environments/environment';
+import { ProfileComponent } from './profile/profile.component'; // Angular CLI environment
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -47,6 +48,7 @@ const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
   { path: 'login', redirectTo: '/game'},
   { path: 'register', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent },
   {
     path: 'game',
     component: DeaComponent,
@@ -64,6 +66,7 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     DialogComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
