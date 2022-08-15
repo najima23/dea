@@ -1,0 +1,30 @@
+<div class="capp">
+  <div class="hideator"><div class="fake-wrapper"></div></div>
+  <div class="gojs-wrapper">
+    <gojs-diagram
+      [initDiagram]="initDiagram"
+      [nodeDataArray]="state.diagramNodeData"
+      [linkDataArray]="state.diagramLinkData"
+      [modelData]="state.diagramModelData"
+      [skipsDiagramUpdate]="state.skipsDiagramUpdate"
+      (modelChange)="diagramModelChange($event)"
+      [divClassName]="diagramDivClassName"
+    >
+    </gojs-diagram>
+  </div>
+
+  <div class="gojs-palette">
+    <gojs-palette
+      [initPalette]="initPalette"
+      [divClassName]="paletteDivClassName"
+    >
+    </gojs-palette>
+  </div>
+
+  <div class="haupt">
+      <button class="button is-success is-outlined">←</button>
+      <button class="button is-danger ml-3">↺</button>
+      <div class="innen"> Wort: AHVFGT </div>
+      <button class="button is-success">▶</button> 
+    </div>
+</div>

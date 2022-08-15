@@ -19,11 +19,20 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { AuthGuard } from './auth.guard';
 import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './counter.reducer';
+import { GojsAngularModule } from "gojs-angular";
+
 
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { ProfileComponent } from './profile/profile.component'; // Angular CLI environment
+import { StartGameModule } from './start-game/start-game.module';
+import { StartGameComponent } from './start-game/start-game.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PuzzleComponent } from './puzzle/puzzle.component';
+import { PuzzleModule } from './puzzle/puzzle.module';
+import { PuzzleGameComponent } from './puzzle-game/puzzle-game.component';
+
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -46,14 +55,28 @@ function initializeKeycloak(keycloak: KeycloakService) {
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
-  { path: 'login', redirectTo: '/game'},
+  { path: 'login', redirectTo: '/startgame'},
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'test2', component: StartGameComponent },
+  
   {
     path: 'game',
-    component: DeaComponent,
+    component: StartGameComponent,
     canActivate:[AuthGuard]
   },
+  {
+    path: 'startgame',
+    component: PuzzleGameComponent,
+    canActivate:[AuthGuard]
+  },
+
+  {
+    path: 'test',
+    component: StartGameComponent,
+    canActivate:[AuthGuard]
+  },
+  
   { path: '**', component: MainPageComponent },
 ];
 
@@ -67,13 +90,16 @@ const appRoutes: Routes = [
     RegisterComponent,
     DialogComponent,
     ProfileComponent,
+    PuzzleGameComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatButtonModule,
-    DeaModule,
+    //DeaModule,
+    PuzzleModule,
     MatDialogModule,
+    HttpClientModule,
     KeycloakAngularModule,
     RouterModule.forRoot(
       appRoutes,
@@ -85,6 +111,8 @@ const appRoutes: Routes = [
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
+    GojsAngularModule,
+
   ],
   providers: [
     {

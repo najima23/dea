@@ -1,0 +1,29 @@
+
+
+.columns {
+  height: 700px;
+  margin-bottom: 80px;
+}
+
+.testy {
+    flex-direction: column-reverse;
+justify-content: space-between;
+}
+
+.nasty {
+}
+
+.first{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.bottonsgroup {
+  height: 200px;
+  margin-bottom: 80px;
+}
+
+.img-start{
+    border: 1px solid lightgrey
+}

@@ -1,0 +1,30 @@
+.eins{
+    background-color: lightpink;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+
+}
+.zwei{
+    background-color: lightslategrey;
+}
+
+.columns {
+    height: 700px;
+    margin-bottom: 80px;
+  }
+
+  .zwei{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+  .center{
+    margin: auto;
+  }
+
+#cy{
+    height: 1200px;
+    width: 1200px;
+}

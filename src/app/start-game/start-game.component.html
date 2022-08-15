@@ -1,0 +1,30 @@
+<div class="columns">
+  <div class="column is-one-fifth testy"> <h1>Hallo {{ currentUser && currentUser.USERNAME }} !</h1>
+    <p> dein aktuelles LEVEL ist: {{ currentUser && currentUser.LEVEL }}</p>
+  </div>
+  <div class="column first">
+    <h1 class="title is-1">DEA PUZZLE</h1>
+    <img src="assets/img/deaPic.png" alt="" class="img-start" />
+    <div class="buttonsgroup">
+      <a
+        class="button is-large is-fullwidth is-hovered is-success my-4"
+        href="http://localhost:4200/startgame"
+        >Start Game</a
+      >
+      <a
+        class="button is-large is-fullwidth is-hovered mb-4"
+        href="http://localhost:4200/game"
+        >Tutorial</a
+      >
+      <a
+        class="button is-large is-fullwidth is-hovered mb-4"
+        href="http://localhost:4200/game"
+        >Quit</a
+      >
+      
+    </div>
+  </div>
+  <div class="column is-one-fifth nasty">
+    <app-table></app-table>
+  </div>
+</div>
