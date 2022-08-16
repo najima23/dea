@@ -37,18 +37,30 @@ export class PuzzleGameComponent {
 
     // define the Node template
     dia.nodeTemplate = $(go.Node, "Auto",
-        $(go.Shape, "Circle", { fill: "lightgray" }),
+        $(go.Shape, "Circle", { fill: "lightgray" },
+              new go.Binding("stroke", "stroke"),
+              new go.Binding("fill", "color"),
+              new go.Binding("figure")
+          ),
         $(go.Panel, "Table",
           $(go.RowColumnDefinition, { column: 0, alignment: go.Spot.Left}),
           $(go.TextBlock, { column: 0, row: 0, columnSpan: 3, editable: true, alignment: go.Spot.Center, font: "bold 10pt sans-serif", margin: new go.Margin(4, 2) }, new go.Binding("text", "key")),
           $(go.Panel, "Horizontal", { column: 1, row: 1 },
             $(go.Shape,{ width: 6, height: 6, portId: "A", toLinkable: true, fromLinkable: true, cursor: 'pointer', fromLinkableDuplicates: true, toLinkableDuplicates: true, fromLinkableSelfNode: true, toLinkableSelfNode: true }),
           ),
-          // $(go.Panel, "Horizontal", { column: 2, row: 1, rowSpan: 2 },
-          //   $(go.Shape, { width: 6, height: 6, portId: "Out", cursor: 'pointer', fromLinkable: true, toLinkable: true, fromLinkableDuplicates: true, toLinkableDuplicates: true, fromLinkableSelfNode: true, toLinkableSelfNode: true })  // allow user-drawn links from here
-          // )
         )
     );
+
+    dia.linkTemplate = $(go.Link,
+      new go.Binding("points"),
+      $(go.Shape,  // the link path shape
+        { isPanelMain: true, strokeWidth: 2 }),
+      $(go.Shape,  // the arrowhead
+        { toArrow: "Standard", stroke: null }),
+      $(go.TextBlock, { margin: 10, background: 'white', editable: true },
+        new go.Binding("text", "key")),
+    );
+
     return dia;
   }
 
@@ -69,31 +81,30 @@ export class PuzzleGameComponent {
 
     initRing();
 
-    palette.padding = new go.Margin(10, 0, 0, 0);
+    palette.padding = new go.Margin(100, 0, 0, 0);
 
     // define the Node template
     palette.nodeTemplate =
       $(go.Node, "Horizontal",
-        { height: 200, width: 130, selectionAdorned: false, cursor: 'grab' },
+        { height: 120, width: 80, selectionAdorned: false, cursor: 'grab' },
         $(go.Shape, "Circle",
           { width: 30, height: 30 },
           new go.Binding("stroke", "stroke"),
           new go.Binding("fill", "color"),
           new go.Binding("figure")
         ),
-        $(go.TextBlock, { margin: 4, font: "bold 24px sans-serif" },
+        $(go.TextBlock, { margin: 2, font: "bold 24px sans-serif" },
           new go.Binding("text", "internal")),
-        $(go.TextBlock, { margin: 4 },
+        $(go.TextBlock, { margin: 2 },
           new go.Binding("text", "key")),
       );
 
     palette.linkTemplate = $(go.Link,
         { // because the GridLayout.alignment is Location and the nodes have locationSpot == Spot.Center,
           // to line up the Link in the same manner we have to pretend the Link has the same location spot
-          locationSpot: go.Spot.Center,
+          height: 120,
           selectionAdornmentTemplate:
             $(go.Adornment, "Link",
-              { locationSpot: go.Spot.Center },
               $(go.Shape,
                 { isPanelMain: true, fill: null, stroke: "deepskyblue", strokeWidth: 0 }),
               $(go.Shape,  // the arrowhead
@@ -111,18 +122,18 @@ export class PuzzleGameComponent {
           { isPanelMain: true, strokeWidth: 2 }),
         $(go.Shape,  // the arrowhead
           { toArrow: "Standard", stroke: null }),
-        $(go.TextBlock, { margin: 4 },
+        $(go.TextBlock, { margin: 4, background: 'white' },
           new go.Binding("text", "key")),
       ),
 
     palette.model = new go.GraphLinksModel([  // specify the contents of the Palette
-        { key: "Start", color: "lightgray", internal: "⟶", stroke: "black" },
         { key: "Ende", color: "white", internal: "", stroke: "black", figure: 'Ring' },
         { key: "Edge", color: "white", internal: "", stroke: "black" },
         // { key: "Link", color: "turquoise", internal: "", stroke: "black" },
     ], [
       // the Palette also has a disconnected Link, which the user can drag-and-drop
-      {key: 'Lnk', points: new go.List().addAll([new go.Point(10, 0), new go.Point(40, 0), new go.Point(40, 40), new go.Point(70, 40)]) }
+      {key: 'Start', points: new go.List().addAll([new go.Point(10, 0), new go.Point(70, 0)]) },
+      {key: 'Link', points: new go.List().addAll([new go.Point(10, 0), new go.Point(40, 0), new go.Point(40, 40), new go.Point(70, 40)]) }
     ]);
 
     return palette;
@@ -156,13 +167,3 @@ const initRing = () => {
   });
 }
 
-const initStart = () => {
-  go.Shape.defineFigureGenerator("Start", function(shape, w, h) {
-    let geo = new go.Geometry();
-    let fig = new go.PathFigure(w, w / 2, true);  // clockwise
-
-    geo.defaultStretch = go.GraphObject.Uniform;
-
-    return geo;
-  });
-}
