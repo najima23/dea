@@ -9,14 +9,14 @@ import { MainPageComponent } from './component/main-page/main-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
-import { DeaComponent } from './dea/dea.component';
+// import { DeaComponent } from './dea/dea.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { DeaModule } from './dea/dea.module';
+// import { DeaModule } from './dea/dea.module';
 import { DialogComponent } from './shared/dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
-import { AuthGuard } from './auth.guard';
+// import { AuthGuard } from './auth.guard';
 import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './counter.reducer';
 import { GojsAngularModule } from "gojs-angular";
@@ -44,11 +44,11 @@ function initializeKeycloak(keycloak: KeycloakService) {
         clientId: 'puzzle-frontend',
       },
       initOptions: {
-    
-        pkceMethod: 'S256', 
+
+        pkceMethod: 'S256',
         // must match to the configured value in keycloak
-        redirectUri: 'http://localhost:4200/your_url',   
-        // this will solved the error 
+        redirectUri: 'http://localhost:4200/your_url',
+        // this will solved the error
         checkLoginIframe: false
       }});
     }
@@ -60,24 +60,24 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'test2', component: StartGameComponent },
-  
+
   {
     path: 'game',
     component: StartGameComponent,
-    canActivate:[AuthGuard]
+    // canActivate:[AuthGuard]
   },
   {
     path: 'startgame',
     component: PuzzleGameComponent,
-    canActivate:[AuthGuard]
+    // canActivate:[AuthGuard]
   },
 
   {
     path: 'test',
     component: StartGameComponent,
-    canActivate:[AuthGuard]
+    // canActivate:[AuthGuard]
   },
-  
+
   { path: '**', component: MainPageComponent },
 ];
 
