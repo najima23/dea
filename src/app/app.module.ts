@@ -32,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PuzzleComponent } from './puzzle/puzzle.component';
 import { PuzzleModule } from './puzzle/puzzle.module';
 import { PuzzleGameComponent } from './puzzle-game/puzzle-game.component';
+import { ExampleComponent } from './example/example.component';
 
 
 function initializeKeycloak(keycloak: KeycloakService) {
@@ -91,6 +92,7 @@ const appRoutes: Routes = [
     DialogComponent,
     ProfileComponent,
     PuzzleGameComponent,
+    ExampleComponent,
   ],
   imports: [
     BrowserModule,
