@@ -1,6 +1,20 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import * as go from 'gojs';
 
+class DemoForceDirectedLayout extends go.ForceDirectedLayout {
+  // Override the makeNetwork method to also initialize
+  // ForceDirectedVertex.isFixed from the corresponding Node.isSelected.
+  override makeNetwork(coll) {
+    // call base method for standard behavior
+    const net = super.makeNetwork(coll);
+    net.vertexes.each(vertex => {
+      const node = vertex.node;
+      if (node !== null) (vertex as any).isFixed = node.isSelected;
+    });
+    return net;
+  }
+}
+
 @Component({
   selector: 'app-puzzle-game',
   templateUrl: './puzzle-game.component.html',
@@ -25,6 +39,12 @@ export class PuzzleGameComponent {
     const $ = go.GraphObject.make;
     const dia = $(go.Diagram, {
       'undoManager.isEnabled': true,
+      "linkingTool.isUnconnectedLinkValid": true,
+      "draggingTool.dragsLink": true,
+      "draggingTool.isGridSnapEnabled": true,
+      "relinkingTool.isUnconnectedLinkValid": true,
+      "relinkingTool.portGravity": 20,
+      layout: new DemoForceDirectedLayout(),
       model: new go.GraphLinksModel(
         {
           linkFromPortIdProperty: "fromPort",
@@ -34,9 +54,15 @@ export class PuzzleGameComponent {
         }
       )
     });
+    const foreLayer = dia.findLayer("Foreground");
+    if (foreLayer) {
+      dia.addLayerBefore($(go.Layer, { name: "first" }), foreLayer);
+    }
 
     // define the Node template
     dia.nodeTemplate = $(go.Node, "Auto",
+      { zOrder: -5},
+        new go.Binding("layerName", "Background"),
         $(go.Shape, "Circle", { fill: "lightgray" },
               new go.Binding("stroke", "stroke"),
               new go.Binding("fill", "color"),
@@ -52,12 +78,14 @@ export class PuzzleGameComponent {
     );
 
     dia.linkTemplate = $(go.Link,
+      { zOrder: 50},
+      new go.Binding("layerName", "Foreground"),
       new go.Binding("points"),
       $(go.Shape,  // the link path shape
-        { isPanelMain: true, strokeWidth: 2 }),
+        { isPanelMain: true, strokeWidth: 2  }),
       $(go.Shape,  // the arrowhead
         { toArrow: "Standard", stroke: null }),
-      $(go.TextBlock, { margin: 10, background: 'white', editable: true },
+      $(go.TextBlock, { margin: 10, background: 'white', editable: true, width: 30, height: 30,  alignment: go.Spot.Center, verticalAlignment: go.Spot.Center, textAlign: 'center' },
         new go.Binding("text", "key")),
     );
 
