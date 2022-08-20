@@ -1,7 +1,9 @@
 <div class="capp">
   <div class="hideator"><div class="fake-wrapper"></div></div>
-  <div class="gojs-wrapper">
+  <div
+    class="gojs-wrapper">
     <gojs-diagram
+      #myDiagram
       [initDiagram]="initDiagram"
       [nodeDataArray]="state.diagramNodeData"
       [linkDataArray]="state.diagramLinkData"
@@ -23,8 +25,8 @@
 
   <div class="haupt">
       <button class="button is-success is-outlined">←</button>
-      <button class="button is-danger ml-3">↺</button>
+      <button class="button is-danger ml-3" (click)="reinitModel()">↺</button>
       <div class="innen"> Wort: AHVFGT </div>
-      <button class="button is-success">▶</button> 
+      <button class="button is-success" (click)="loadNewDiagram()">▶</button>
     </div>
 </div>
