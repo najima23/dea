@@ -3,6 +3,7 @@ import * as go from 'gojs';
 import { initRing } from "./shapes/shape";
 import { DiagramComponent } from "gojs-angular";
 import produce from "immer";
+import { game } from "./level";
 
 
 class DemoForceDirectedLayout extends go.ForceDirectedLayout {
@@ -28,6 +29,8 @@ class DemoForceDirectedLayout extends go.ForceDirectedLayout {
 export class PuzzleGameComponent {
   public diagramDivClassName: string = 'gojs-wrapper';
   public paletteDivClassName = 'gojs-palette';
+  public game = game;
+  public task = game[0].task;
 
   public state = {
     diagramNodeData: [
@@ -164,29 +167,45 @@ export class PuzzleGameComponent {
     }
   }
 
-  loadNewDiagram() {
-    const nodeDataArray = [
-      {id: '0', key: 1, text: "Alpha", color: "lightblue"},
-      {id: '1', key: 2, text: "Beta", color: "orange"},
-      {id: '2', key: 3, text: "Gamma", color: "lightgreen", group: 5},
-      {id: '3', key: 4, text: "Delta", color: "pink", group: 5},
-      {id: '4', key: 5, text: "Epsilon", color: "green", isGroup: true}
-    ];
-    const linkDataArray = [
-      {key: 0, from: '1', to: 2, color: "blue"},
-      {key: 1, from: '2', to: 2},
-      {key: 2, from: '3', to: 4, color: "green"},
-      {key: 3, from: '3', to: 1, color: "purple"}
-    ];
+  loadNewDiagram(value?: number) {
+    console.log(value);
+    if (value !== undefined) {
+      console.log('bin hier')
+      if (this.myDiagramComponent) {
+        this.task = game[value].task
+        this.myDiagramComponent.clear();
 
-    if (this.myDiagramComponent) {
-      this.myDiagramComponent.clear();
+        this.state = produce(this.state, draft => {
+          draft.skipsDiagramUpdate = false;
+          draft.diagramNodeData = game[value].nodes;
+          draft.diagramLinkData = game[value].links as any;
+        });
+      }
+    } else {
+      console.log('bin da')
+      const nodeDataArray = [
+        {id: '0', key: 1, text: "Alpha", color: "lightblue"},
+        {id: '1', key: 2, text: "Beta", color: "orange"},
+        {id: '2', key: 3, text: "Gamma", color: "lightgreen", group: 5},
+        {id: '3', key: 4, text: "Delta", color: "pink", group: 5},
+        {id: '4', key: 5, text: "Epsilon", color: "green", isGroup: true}
+      ];
+      const linkDataArray = [
+        {key: 0, from: '1', to: 2, color: "blue"},
+        {key: 1, from: '2', to: 2},
+        {key: 2, from: '3', to: 4, color: "green"},
+        {key: 3, from: '3', to: 1, color: "purple"}
+      ];
 
-      this.state = produce(this.state, draft => {
-        draft.skipsDiagramUpdate = false;
-        draft.diagramNodeData = nodeDataArray;
-        draft.diagramLinkData = linkDataArray as any;
-      });
+      if (this.myDiagramComponent) {
+        this.myDiagramComponent.clear();
+
+        this.state = produce(this.state, draft => {
+          draft.skipsDiagramUpdate = false;
+          draft.diagramNodeData = nodeDataArray;
+          draft.diagramLinkData = linkDataArray as any;
+        });
+      }
     }
   }
 }

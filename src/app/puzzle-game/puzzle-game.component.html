@@ -1,5 +1,9 @@
 <div class="capp">
   <div class="hideator"><div class="fake-wrapper"></div></div>
+  <div class="task">Aufgabe: {{task}}</div>
+  <ul class="task-list">
+    <li *ngFor="let level of game.levels" (click)="loadNewDiagram(level)">Level {{level}}</li>
+  </ul>
   <div
     class="gojs-wrapper">
     <gojs-diagram
@@ -24,9 +28,10 @@
   </div>
 
   <div class="haupt">
-      <button class="button is-success is-outlined">←</button>
+      <button class="button is-success is-outlined">‹</button>
       <button class="button is-danger ml-3" (click)="reinitModel()">↺</button>
       <div class="innen"> Wort: AHVFGT </div>
       <button class="button is-success" (click)="loadNewDiagram()">▶</button>
+      <button class="button is-success is-outlined ml-3">›</button>
     </div>
 </div>
