@@ -9,14 +9,14 @@ import { MainPageComponent } from './component/main-page/main-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
-// import { DeaComponent } from './dea/dea.component';
+import { DeaComponent } from './dea/dea.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-// import { DeaModule } from './dea/dea.module';
+import { DeaModule } from './dea/dea.module';
 import { DialogComponent } from './shared/dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
-// import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './auth.guard';
 import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './counter.reducer';
 import { GojsAngularModule } from "gojs-angular";
@@ -62,20 +62,20 @@ const appRoutes: Routes = [
   { path: 'test2', component: StartGameComponent },
 
   {
-    path: 'game',
+    path: 'start',
     component: StartGameComponent,
-    // canActivate:[AuthGuard]
+    canActivate:[AuthGuard]
   },
   {
     path: 'startgame',
     component: PuzzleGameComponent,
-    // canActivate:[AuthGuard]
+    canActivate:[AuthGuard]
   },
 
   {
     path: 'test',
-    component: StartGameComponent,
-    // canActivate:[AuthGuard]
+    component: DeaComponent,
+    canActivate:[AuthGuard]
   },
 
   { path: '**', component: MainPageComponent },

@@ -43,13 +43,13 @@
 }
 
 .haupt {
-  position: absolute;
   bottom: 20px;
+  margin: 12px auto;
   right: calc(50% - 300px);
-  width: 500px;
   height: 40px;
   z-index: 3;
   display: flex;
+
 }
 
 .innen {
@@ -57,17 +57,20 @@
   padding: 1rem;
   margin: 0 1rem;
   line-height: 0;
+
+  
 }
 
 .task {
-  position: absolute;
   top: 2rem;
+  margin: 0 auto;
   z-index:3;
   background-color: white;
   width: 500px;
-  height: 100px;
+  min-height:40px;
   right: calc(50% - 220px);
   border: 1px solid lightseagreen;
+
 }
 
 .task-list {
@@ -83,4 +86,19 @@
 
 .task-list li {
   cursor: pointer;
+}
+
+.unten{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+
+}
+
+.unten-zwei{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
 }
