@@ -4,6 +4,8 @@ import { initRing } from "./shapes/shape";
 import { DataSyncService, DiagramComponent } from "gojs-angular";
 import produce from "immer";
 import { game } from "./level";
+import { DeaArray, WordGenerator } from './word-generator';
+import { WordChecker } from './word-checker';
 
 
 class DemoForceDirectedLayout extends go.ForceDirectedLayout {
@@ -37,16 +39,16 @@ export class PuzzleGameComponent implements OnChanges {
   public state: any = {
     diagramNodeData: game[0].nodes,
     diagramLinkData: game[0].links,
-    diagramModelData: {prop: 'value'},
+    diagramModelData: { prop: 'value' },
     skipsDiagramUpdate: false,
     paletteNodeData: []
   };
 
-  @ViewChild('myDiagram', {static: true}) public myDiagramComponent: DiagramComponent | undefined;
+  @ViewChild('myDiagram', { static: true }) public myDiagramComponent: DiagramComponent | undefined;
 
   constructor(private cdr: ChangeDetectorRef) { }
 
-  public ngOnChanges () {
+  public ngOnChanges() {
     // whenever showGrid changes, update the diagram.grid.visible in the child DiagramComponent
     if (this.myDiagramComponent && this.myDiagramComponent.diagram instanceof go.Diagram) {
       console.log(this.myDiagramComponent.diagram)
@@ -60,7 +62,7 @@ export class PuzzleGameComponent implements OnChanges {
 
     const appComp: any = this;
     // listener for inspector
-    this.myDiagramComponent?.diagram.addDiagramListener('ChangedSelection', function(e) {
+    this.myDiagramComponent?.diagram.addDiagramListener('ChangedSelection', function (e) {
       if (e.diagram.selection.count === 0) {
         appComp.selectedNodeData = null;
       }
@@ -95,10 +97,10 @@ export class PuzzleGameComponent implements OnChanges {
       })
     });
 
-    
+
 
     // define the Node template
-    diagram.nodeTemplate = $(go.Node, "Auto", {zOrder: -5}, new go.Binding("layerName", "Background"), $(go.Shape, "Circle", {fill: "lightgray"}, new go.Binding("stroke", "stroke"), new go.Binding("fill", "color"), new go.Binding("figure")), $(go.Panel, "Table", $(go.RowColumnDefinition, {
+    diagram.nodeTemplate = $(go.Node, "Auto", { zOrder: -5 }, new go.Binding("layerName", "Background"), $(go.Shape, "Circle", { fill: "lightgray" }, new go.Binding("stroke", "stroke"), new go.Binding("fill", "color"), new go.Binding("figure")), $(go.Panel, "Table", $(go.RowColumnDefinition, {
       column: 0, alignment: go.Spot.Left
     }), $(go.TextBlock, {
       column: 0,
@@ -108,7 +110,7 @@ export class PuzzleGameComponent implements OnChanges {
       alignment: go.Spot.Center,
       font: "bold 10pt sans-serif",
       margin: new go.Margin(4, 2)
-    }, new go.Binding("text", "text").makeTwoWay()), $(go.Panel, "Horizontal", {column: 1, row: 1}, $(go.Shape, {
+    }, new go.Binding("text", "text").makeTwoWay()), $(go.Panel, "Horizontal", { column: 1, row: 1 }, $(go.Shape, {
       width: 6,
       height: 6,
       portId: "A",
@@ -121,23 +123,23 @@ export class PuzzleGameComponent implements OnChanges {
       toLinkableSelfNode: true
     }))));
 
-    diagram.linkTemplate = $(go.Link, {zOrder: 50}, new go.Binding("layerName", "Foreground"), new go.Binding("points"), $(go.Shape,  // the link path shape
-      {isPanelMain: true, strokeWidth: 2}), $(go.Shape,  // the arrowhead
-      {toArrow: "Standard", stroke: null}), $(go.TextBlock, {
-      margin: 10,
-      background: 'white',
-      editable: true,
-      width: 30,
-      height: 30,
-      alignment: go.Spot.Center,
-      verticalAlignment: go.Spot.Center,
-      textAlign: 'center'
-    }, new go.Binding("text", "text").makeTwoWay()));
+    diagram.linkTemplate = $(go.Link, { zOrder: 50 }, new go.Binding("layerName", "Foreground"), new go.Binding("points"), $(go.Shape,  // the link path shape
+      { isPanelMain: true, strokeWidth: 2 }), $(go.Shape,  // the arrowhead
+        { toArrow: "Standard", stroke: null }), $(go.TextBlock, {
+          margin: 10,
+          background: 'white',
+          editable: true,
+          width: 30,
+          height: 30,
+          alignment: go.Spot.Center,
+          verticalAlignment: go.Spot.Center,
+          textAlign: 'center'
+        }, new go.Binding("text", "text").makeTwoWay()));
 
     return diagram;
   }
 
-  public diagramModelChange =  (changes: go.IncrementalData) => {
+  public diagramModelChange = (changes: go.IncrementalData) => {
     if (!changes) return;
     const appComp = this;
     this.state = produce(this.state, draft => {
@@ -159,29 +161,29 @@ export class PuzzleGameComponent implements OnChanges {
         }
       }
     });
- /*    const viewNode = this.myDiagramComponent?.diagram.nodes!;
-    const viewLink = this.myDiagramComponent?.diagram.links!;
-
-    const nodes: any = [];
-    const links: any = [];
-    
-    console.log("hchhchchhch", changes);
-    
-    while(viewNode.next()) {
-      nodes.push(viewNode.value.data);
-    }
-
-    while(viewLink.next()) {
-      links.push(viewLink.value.data);
-    }
-    console.log("links", links);
-    console.log("nodes", nodes);
-
-      this.state = produce(this.state, draft => {
-        draft.skipsDiagramUpdate = true;
-        draft.diagramNodeData = nodes;
-        draft.diagramLinkData = links;
-      }); */
+    /*    const viewNode = this.myDiagramComponent?.diagram.nodes!;
+       const viewLink = this.myDiagramComponent?.diagram.links!;
+   
+       const nodes: any = [];
+       const links: any = [];
+       
+       console.log("hchhchchhch", changes);
+       
+       while(viewNode.next()) {
+         nodes.push(viewNode.value.data);
+       }
+   
+       while(viewLink.next()) {
+         links.push(viewLink.value.data);
+       }
+       console.log("links", links);
+       console.log("nodes", nodes);
+   
+         this.state = produce(this.state, draft => {
+           draft.skipsDiagramUpdate = true;
+           draft.diagramNodeData = nodes;
+           draft.diagramLinkData = links;
+         }); */
   };
 
   public initPalette(): go.Palette {
@@ -198,28 +200,28 @@ export class PuzzleGameComponent implements OnChanges {
       width: 30, height: 30
     }, new go.Binding("stroke", "stroke"), new go.Binding("fill", "color"), new go.Binding("figure")), $(go.TextBlock, {
       margin: 2, font: "bold 24px sans-serif"
-    }, new go.Binding("text", "internal")), $(go.TextBlock, {margin: 2}, new go.Binding("text", "key")),);
+    }, new go.Binding("text", "internal")), $(go.TextBlock, { margin: 2 }, new go.Binding("text", "key")),);
 
     palette.linkTemplate = $(go.Link, { // because the GridLayout.alignment is Location and the nodes have locationSpot == Spot.Center,
       // to line up the Link in the same manner we have to pretend the Link has the same location spot
       height: 120, selectionAdornmentTemplate: $(go.Adornment, "Link", $(go.Shape, {
         isPanelMain: true, fill: null, stroke: "deepskyblue", strokeWidth: 0
       }), $(go.Shape,  // the arrowhead
-        {toArrow: "Standard", stroke: null}))
+        { toArrow: "Standard", stroke: null }))
     }, {
       routing: go.Link.AvoidsNodes, curve: go.Link.JumpOver, corner: 5, toShortLength: 4
     }, new go.Binding("points"), $(go.Shape,  // the link path shape
-      {isPanelMain: true, strokeWidth: 2}), $(go.Shape,  // the arrowhead
-      {toArrow: "Standard", stroke: null}), $(go.TextBlock, {
-      margin: 4, background: 'white'
-    }, new go.Binding("text", "key"))),
+      { isPanelMain: true, strokeWidth: 2 }), $(go.Shape,  // the arrowhead
+        { toArrow: "Standard", stroke: null }), $(go.TextBlock, {
+          margin: 4, background: 'white'
+        }, new go.Binding("text", "key"))),
 
       palette.model = new go.GraphLinksModel([  // specify the contents of the Palette
-        {key: "Ende", color: "white", internal: "", stroke: "black", figure: 'Ring'}, {
+        { key: "Ende", color: "white", internal: "", stroke: "black", figure: 'Ring' }, {
           key: "Edge", color: "white", internal: "", stroke: "black"
         } // { key: "Link", color: "turquoise", internal: "", stroke: "black" },
       ], [// the Palette also has a disconnected Link, which the user can drag-and-drop
-        {key: 'Start', points: new go.List().addAll([new go.Point(10, 0), new go.Point(70, 0)])}, {
+        { key: 'Start', points: new go.List().addAll([new go.Point(10, 0), new go.Point(70, 0)]) }, {
           key: 'Link',
           points: new go.List().addAll([new go.Point(10, 0), new go.Point(40, 0), new go.Point(40, 40), new go.Point(70, 40)])
         }]);
@@ -240,19 +242,47 @@ export class PuzzleGameComponent implements OnChanges {
   }
 
   loadNewDiagram(value: number) {
-      if (this.myDiagramComponent) {
-        this.task = game[value].task
-        this.myDiagramComponent.clear();
-        this.state = produce(this.state, draft => {
-          draft.skipsDiagramUpdate = false;
-          draft.diagramNodeData = game[value].nodes;
-          draft.diagramLinkData = game[value].links as any;
-        });
+    if (this.myDiagramComponent) {
+      this.task = game[value].task
+      this.myDiagramComponent.clear();
+      this.state = produce(this.state, draft => {
+        draft.skipsDiagramUpdate = false;
+        draft.diagramNodeData = game[value].nodes;
+        draft.diagramLinkData = game[value].links as any;
+      });
     }
   }
 
   validateDiagram() {
+    const wordGenerator = new WordGenerator();
+    const deaObject: DeaArray = {
+      nodes: this.state.diagramNodeData,
+      links: this.state.diagramLinkData
+    }
+    console.log(wordGenerator.generateWords(deaObject));
+
     console.log("validate data", this.state);
-}
+  }
+  checkDea() {
+    const wordChecker = new WordChecker();
+    const deaObject: DeaArray = {
+      nodes: this.state.diagramNodeData,
+      links: this.state.diagramLinkData
+    }
+    let check;
+    const words = game[2].solution();
+
+    for (let i = 0; i < words.length; i++) {
+      check = wordChecker.checkBeginning(deaObject, words[i]);
+      console.log("check", check);
+
+      if (check === false) {
+        break;
+      }
+    }
+
+    alert(`Deine Eingabe ist ${check}`);
+    console.log("validate data", this.state);
+  }
 }
 

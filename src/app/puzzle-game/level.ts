@@ -1,3 +1,5 @@
+import { WordGenerator } from "./word-generator";
+
 export const game = {
   0: {
     task: 'Erzeuge einen beliebegen gueltigen Graphen',
@@ -42,7 +44,30 @@ export const game = {
       {key: 4, from: 2, to: 2, text: '1'},
       {key: 5, from: 2, to: 3, text: '0'},
       {key: 6, from: 3, to: 3, text: '0,1'}
-    ]
+    ],
+    solution: function(){
+      const wordGenerator = new WordGenerator();
+      const words = wordGenerator.generateWords({
+        nodes: [
+          {id: 0, text: "A", figure: 'Ring'},
+          {id: 1, text: "B",  figure: 'Ring'},
+          {id: 2, text: "C",  figure: 'Ring'},
+          {id: 3, text: "D" }
+        ],
+        links: [
+          {key: "Start", from: -1, to: 0, text: 'Start'},
+          {key: 0, from: 0, to: 1, text: '1'},
+          {key: 1, from: 0, to: 0, text: '0'},
+          {key: 2, from: 1, to: 0, text: '0'},
+          {key: 3, from: 1, to: 2, text: '1'},
+          {key: 4, from: 2, to: 2, text: '1'},
+          {key: 5, from: 2, to: 3, text: '0'},
+          {key: 6, from: 3, to: 3, text: '0,1'}
+        ],
+      });
+
+      return words;
+     }
   },
   3: {
     task: '̈Gegeben sei die Sprache L1 = {w ∈ {0} *| |w| ist durch 3 teilbar}. Geben Sie einen deterministischen endlichen Automaten in Graphdarstellung an, der L1 erkennt',
