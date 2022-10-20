@@ -15,7 +15,7 @@ export interface DeaArray {
 export class WordGenerator {
 
     generateWordRekursive(dea: DeaArray, word: string, currentNode: DeaNode, index: number): string | null {
-        if(index > 1000) {
+        if (index > 1000) {
             return null;
         }
         // If (Teste ob Node Enpunkt ist)
@@ -43,7 +43,7 @@ export class WordGenerator {
         }
 
         //Schaue worauf der Link zeigt(to)
-        return this.generateWordRekursive(dea, word,nextNodeElement!, index+1)
+        return this.generateWordRekursive(dea, word, nextNodeElement!, index + 1)
     }
 
 
@@ -57,10 +57,29 @@ export class WordGenerator {
     };
 
     generateWords(dea: DeaArray): string[] {
-        const result: string[] = [];  
-        for (let i = 0; i < 1000; i++){
+        const result: string[] = [];
+        for (let i = 0; i < 1000000; i++) {
             const word = this.generateWord(dea);
-            if (word !== null){
+            if (word !== null) {
+                result.push(word)
+            }
+        }
+        return result;
+    }
+
+     generateRandomWord(arr) {
+         const length = Math.floor(Math.random() * 25);
+         return Array
+         .from({ length },() => arr[Math.floor(Math.random() * arr.length)])
+         .join("");
+}             
+    
+
+      generateRandomWords(arr): string[] {
+        const result: string[] = [];
+        for (let i = 0; i < 10000; i++) {
+            const word = this.generateRandomWord(arr);
+            if (word !== null) {
                 result.push(word)
             }
         }
@@ -68,3 +87,4 @@ export class WordGenerator {
     }
 
 }
+

@@ -3,6 +3,7 @@ import { DeaArray, DeaNode } from "./word-generator";
 export class WordChecker {
 
     checkBeginning(dea: DeaArray, word: string): boolean {
+        console.log("word", word);
         const currentStartLink = dea.links.find(link => link.key === "Start");
         const currentNode = dea.nodes.find(node => node.id === currentStartLink!.to);
         return this.checkWordRekursive(dea, word, currentNode!);

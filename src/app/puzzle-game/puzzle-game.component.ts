@@ -32,7 +32,8 @@ export class PuzzleGameComponent implements OnChanges {
   public diagramDivClassName: string = 'gojs-wrapper';
   public paletteDivClassName = 'gojs-palette';
   public game = game;
-  public task = game[0].task;
+  private level = 0;
+  public task = game[this.level].task;
   public observedDiagram: any = null;
 
 
@@ -243,6 +244,7 @@ export class PuzzleGameComponent implements OnChanges {
 
   loadNewDiagram(value: number) {
     if (this.myDiagramComponent) {
+      this.level = value;
       this.task = game[value].task
       this.myDiagramComponent.clear();
       this.state = produce(this.state, draft => {
@@ -255,33 +257,41 @@ export class PuzzleGameComponent implements OnChanges {
 
   validateDiagram() {
     const wordGenerator = new WordGenerator();
-    const deaObject: DeaArray = {
+    /*const deaObject: DeaArray = {
       nodes: this.state.diagramNodeData,
       links: this.state.diagramLinkData
-    }
-    console.log(wordGenerator.generateWords(deaObject));
+    }*/
+    //console.log(wordGenerator.generateWords(deaObject));
 
-    console.log("validate data", this.state);
+    console.log(wordGenerator.generateRandomWords(["1","0"]));
+
+    //console.log("validate data", this.state);
   }
   checkDea() {
+    const wordGenerator = new WordGenerator();
+    const randomGeneratedArray = wordGenerator.generateRandomWords(["1","0"])
+
     const wordChecker = new WordChecker();
     const deaObject: DeaArray = {
       nodes: this.state.diagramNodeData,
       links: this.state.diagramLinkData
     }
-    let check;
-    const words = game[2].solution();
 
-    for (let i = 0; i < words.length; i++) {
-      check = wordChecker.checkBeginning(deaObject, words[i]);
-      console.log("check", check);
+    //console.log("gameb", game[this.level].solution())
+    const referenzautomat = game[this.level].solution;
+    for (let i = 0; i < randomGeneratedArray.length; i++) {
 
-      if (check === false) {
-        break;
+      const check = wordChecker.checkBeginning(deaObject, randomGeneratedArray[i]);
+      const referenzCheck = wordChecker.checkBeginning(referenzautomat, randomGeneratedArray[i]);
+
+
+      if (check !== referenzCheck) {
+        alert("Check failed");
+        return;
       }
     }
 
-    alert(`Deine Eingabe ist ${check}`);
+    alert(`Deine Eingabe ist richtig}`);
     console.log("validate data", this.state);
   }
 }
