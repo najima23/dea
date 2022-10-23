@@ -7,6 +7,110 @@ export const game = {
     links: [],
   },
   1: {
+    task: 'Stellen Sie die nachfolgenden Sprache als deterministische endliche Automaten dar \n L = {w | w ∈ {0,1}∗ der nur Wörter akzeptiert, die mit 0 anfangen}',
+    nodes: [
+      { id: 0, text: "A"},
+      { id: 1, text: "B",figure: 'Ring'},
+      { id: 2, text: "C"}
+    ],
+    links: [
+      { key: 0, from: 0, to: 1, text: '0' },
+      { key: 1, from: 0, to: 2, text: '1' },
+      { key: 2, from: 2, to: 2, text: '0,1' },
+      { key: 4, from: 1, to: 1, text: '0,1' },
+    ],
+    rightWords:function () {
+      const wordGenerator = new WordGenerator();
+      const words = wordGenerator.generateWords({
+        nodes: [
+          { id: 0, text: "A"},
+          { id: 1, text: "B",figure: 'Ring'},
+          { id: 2, text: "C"}
+        ],
+        links: [
+          { key: "Start", from: -1, to: 0, text: 'Start' },
+          { key: 0, from: 0, to: 1, text: '0' },
+          { key: 1, from: 0, to: 2, text: '1' },
+          { key: 2, from: 2, to: 2, text: '0,1' },
+          { key: 4, from: 1, to: 1, text: '0,1' },
+        ],
+      });
+      return words;
+    },
+    randomWords:function () {
+      const wordGenerator = new WordGenerator();
+      const randomGeneratedArray = wordGenerator.generateRandomWords(["1","0"])
+      
+      return randomGeneratedArray;
+    },
+    solution: {
+        nodes: [
+          { id: 0, text: "A"},
+          { id: 1, text: "B",figure: 'Ring'},
+          { id: 2, text: "C"}
+        ],
+        links: [
+          { key: "Start", from: -1, to: 0, text: 'Start' },
+          { key: 0, from: 0, to: 1, text: '0' },
+          { key: 1, from: 0, to: 2, text: '1' },
+          { key: 2, from: 2, to: 2, text: '0,1' },
+          { key: 4, from: 1, to: 1, text: '0,1' },
+        ],
+      }
+  },  
+  2: {
+    task: 'Stellen Sie die nachfolgenden Sprache als deterministische endliche Automaten dar \n L = {w | w ∈ {0,1}∗ der nur Wörter akzeptiert, die mit 0 anfangen}',
+    nodes: [
+      { id: 0, text: "A"},
+      { id: 1, text: "B",figure: 'Ring'},
+      { id: 2, text: "C"}
+    ],
+    links: [
+      { key: 0, from: 0, to: 1, text: '0' },
+      { key: 1, from: 0, to: 2, text: '1' },
+      { key: 2, from: 2, to: 2, text: '0,1' },
+      { key: 4, from: 1, to: 1, text: '0,1' },
+    ],
+    rightWords:function () {
+      const wordGenerator = new WordGenerator();
+      const words = wordGenerator.generateWords({
+        nodes: [
+          { id: 0, text: "A"},
+          { id: 1, text: "B",figure: 'Ring'},
+          { id: 2, text: "C"}
+        ],
+        links: [
+          { key: "Start", from: -1, to: 0, text: 'Start' },
+          { key: 0, from: 0, to: 1, text: '0' },
+          { key: 1, from: 0, to: 2, text: '1' },
+          { key: 2, from: 2, to: 2, text: '0,1' },
+          { key: 4, from: 1, to: 1, text: '0,1' },
+        ],
+      });
+      return words;
+    },
+    randomWords:function () {
+      const wordGenerator = new WordGenerator();
+      const randomGeneratedArray = wordGenerator.generateRandomWords(["1","0"])
+      
+      return randomGeneratedArray;
+    },
+    solution: {
+        nodes: [
+          { id: 0, text: "A"},
+          { id: 1, text: "B",figure: 'Ring'},
+          { id: 2, text: "C"}
+        ],
+        links: [
+          { key: "Start", from: -1, to: 0, text: 'Start' },
+          { key: 0, from: 0, to: 1, text: '0' },
+          { key: 1, from: 0, to: 2, text: '1' },
+          { key: 2, from: 2, to: 2, text: '0,1' },
+          { key: 4, from: 1, to: 1, text: '0,1' },
+        ],
+      }
+  },  
+  3: {
     task: 'Stellen Sie die nachfolgenden Sprache als deterministische endliche Automaten dar \n L = {w | w ∈ {0,1}∗ und w entha ̈lt das Teilwort 110}',
     nodes: [
       { id: 0, text: "A"},
@@ -43,9 +147,13 @@ export const game = {
           { key: 6, from: 3, to: 3, text: '0,1'}
         ],
       });
-
-      console.log("fdkjj", words);
       return words;
+    },
+    randomWords:function () {
+      const wordGenerator = new WordGenerator();
+      const randomGeneratedArray = wordGenerator.generateRandomWords(["1","0"])
+      
+      return randomGeneratedArray;
     },
     solution: {
         nodes: [
@@ -66,7 +174,7 @@ export const game = {
         ],
       }
   },
-  2: {
+  4: {
     task: 'Stellen Sie die nachfolgenden Sprache als deterministische endliche Automaten dar L = {w | w ∈ {0,1}∗ und w entha ̈lt nicht das Teilwort 110}',
     nodes: [
       { id: 0, text: "A", color: "white", figure: 'Ring' },
@@ -84,9 +192,7 @@ export const game = {
       { key: 5, from: 2, to: 3, text: '0' },
       { key: 6, from: 3, to: 3, text: '0,1' }
     ],
-    solution: function () {
-      const wordGenerator = new WordGenerator();
-      const words = wordGenerator.generateWords({
+    solution:{
         nodes: [
           { id: 0, text: "A", figure: 'Ring' },
           { id: 1, text: "B", figure: 'Ring' },
@@ -103,12 +209,15 @@ export const game = {
           { key: 5, from: 2, to: 3, text: '0' },
           { key: 6, from: 3, to: 3, text: '0,1' }
         ],//Referenzautomat
-      });
-
-      return words;
-    }
-  },
-  3: {
+      },
+      randomWords:function () {
+        const wordGenerator = new WordGenerator();
+        const randomGeneratedArray = wordGenerator.generateRandomWords(["1","0"])
+        
+        return randomGeneratedArray;
+      }
+    },
+  5: {
     task: '̈Gegeben sei die Sprache L1 = {w ∈ {0} *| |w| ist durch 3 teilbar}. Geben Sie einen deterministischen endlichen Automaten in Graphdarstellung an, der L1 erkennt',
     nodes: [
       { id: 0, text: "A", color: "white", figure: 'Ring' },
@@ -120,8 +229,25 @@ export const game = {
       { key: 1, from: 1, to: 2, text: '0' },
       { key: 2, from: 2, to: 0, text: '0' },
     ],
-    solution: () => "0100110111"
+    solution: {
+      nodes: [
+        { id: 0, text: "A", color: "white", figure: 'Ring' },
+        { id: 1, text: "B" },
+        { id: 2, text: "C" },
+      ],
+      links: [
+        { key: "Start", from: -1, to: 0, text: 'Start' },
+        { key: 0, from: 0, to: 1, text: '0' },
+        { key: 1, from: 1, to: 2, text: '0' },
+        { key: 2, from: 2, to: 0, text: '0' },
+      ],
+    } ,
+    randomWords:function () {
+      const wordGenerator = new WordGenerator();
+      const randomGeneratedArray = wordGenerator.generateRandomWords(["0","0"])
+      
+      return randomGeneratedArray;
+    },
   },
-
-  levels: [0, 1, 2, 3]
+  levels: [0, 1, 2, 3, 4, 5]
 }

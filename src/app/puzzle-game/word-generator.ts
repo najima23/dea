@@ -58,7 +58,7 @@ export class WordGenerator {
 
     generateWords(dea: DeaArray): string[] {
         const result: string[] = [];
-        for (let i = 0; i < 1000000; i++) {
+        for (let i = 0; i < 1000; i++) {
             const word = this.generateWord(dea);
             if (word !== null) {
                 result.push(word)
@@ -77,7 +77,7 @@ export class WordGenerator {
 
       generateRandomWords(arr): string[] {
         const result: string[] = [];
-        for (let i = 0; i < 10000; i++) {
+        for (let i = 0; i < 1000; i++) {
             const word = this.generateRandomWord(arr);
             if (word !== null) {
                 result.push(word)

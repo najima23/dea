@@ -32,8 +32,10 @@ export class PuzzleGameComponent implements OnChanges {
   public diagramDivClassName: string = 'gojs-wrapper';
   public paletteDivClassName = 'gojs-palette';
   public game = game;
-  private level = 0;
-  public task = game[this.level].task;
+  public activeLevel = 0;
+  public highestLevel = 0;
+
+  public task = game[this.activeLevel].task;
   public observedDiagram: any = null;
 
 
@@ -231,28 +233,53 @@ export class PuzzleGameComponent implements OnChanges {
   }
 
   public reinitModel() {
-    if (this.myDiagramComponent) {
-      this.myDiagramComponent.clear();
 
-      this.state = produce(this.state, draft => {
-        draft.skipsDiagramUpdate = false;
-        draft.diagramNodeData = [];
-        draft.diagramLinkData = [];
-      });
+    let text = "Bist du dir sicher?!\nOK or Cancel.";
+    if (confirm(text) == true) {
+      text = "You pressed OK!";
+      if (this.myDiagramComponent) {
+        //this.myDiagramComponent.clear();
+        this.loadDiagram(this.activeLevel);
+
+        /*this.state = produce(this.state, draft => {
+          draft.skipsDiagramUpdate = false;
+          draft.diagramNodeData = [];
+          draft.diagramLinkData = [];
+        });*/
+      }
+    } else {
+      text = "You canceled!";
     }
   }
 
-  loadNewDiagram(value: number) {
+
+  nextDiagram(value: number) {
     if (this.myDiagramComponent) {
-      this.level = value;
+      this.activeLevel = value;
       this.task = game[value].task
-      this.myDiagramComponent.clear();
+      //this.myDiagramComponent.clear();
       this.state = produce(this.state, draft => {
         draft.skipsDiagramUpdate = false;
         draft.diagramNodeData = game[value].nodes;
         draft.diagramLinkData = game[value].links as any;
       });
     }
+  }
+
+  loadDiagram(value: number) {
+    if(value <= this.highestLevel){
+      if (this.myDiagramComponent) {
+        this.activeLevel = value;
+        this.task = game[value].task
+        //this.myDiagramComponent.clear();
+        this.state = produce(this.state, draft => {
+          draft.skipsDiagramUpdate = false;
+          draft.diagramNodeData = game[value].nodes;
+          draft.diagramLinkData = game[value].links as any;
+        });
+      }
+    }
+
   }
 
   validateDiagram() {
@@ -263,14 +290,18 @@ export class PuzzleGameComponent implements OnChanges {
     }*/
     //console.log(wordGenerator.generateWords(deaObject));
 
-    console.log(wordGenerator.generateRandomWords(["1","0"]));
+    console.log(wordGenerator.generateRandomWords(["1", "0"]));
 
     //console.log("validate data", this.state);
   }
   checkDea() {
-    const wordGenerator = new WordGenerator();
-    const randomGeneratedArray = wordGenerator.generateRandomWords(["1","0"])
-
+    //const wordGenerator = new WordGenerator();
+    //const randomGeneratedArray = wordGenerator.generateRandomWords(["1","0"])
+    if (this.activeLevel === 0) {
+      console.log("gamee 0", this.activeLevel);
+      alert(`Deine Eingabe ist richtig}`);
+      return;
+    }
     const wordChecker = new WordChecker();
     const deaObject: DeaArray = {
       nodes: this.state.diagramNodeData,
@@ -278,7 +309,9 @@ export class PuzzleGameComponent implements OnChanges {
     }
 
     //console.log("gameb", game[this.level].solution())
-    const referenzautomat = game[this.level].solution;
+    const randomGeneratedArray = game[this.activeLevel].randomWords();
+
+    const referenzautomat = game[this.activeLevel].solution;
     for (let i = 0; i < randomGeneratedArray.length; i++) {
 
       const check = wordChecker.checkBeginning(deaObject, randomGeneratedArray[i]);
@@ -292,6 +325,48 @@ export class PuzzleGameComponent implements OnChanges {
     }
 
     alert(`Deine Eingabe ist richtig}`);
+    console.log("validate data", this.state);
+  }
+
+  loadNextLevel() {
+    if (this.activeLevel === 0) {
+      this.activeLevel = 1;
+      this.highestLevel = 1;
+      console.log("gamee 0", this.activeLevel);
+      alert(`Deine Eingabe ist richtig}`);
+      this.nextDiagram(this.activeLevel, );
+
+      return;
+    }
+    const wordChecker = new WordChecker();
+    const deaObject: DeaArray = {
+      nodes: this.state.diagramNodeData,
+      links: this.state.diagramLinkData
+    }
+
+    //console.log("gameb", game[this.level].solution())
+    const randomGeneratedArray = game[this.activeLevel].randomWords();
+
+    const referenzautomat = game[this.activeLevel].solution;
+    for (let i = 0; i < randomGeneratedArray.length; i++) {
+
+      const check = wordChecker.checkBeginning(deaObject, randomGeneratedArray[i]);
+      const referenzCheck = wordChecker.checkBeginning(referenzautomat, randomGeneratedArray[i]);
+
+
+      if (check !== referenzCheck) {
+        alert("Beende dieses Level");
+        return;
+      }
+    }
+
+    alert(`Du wirst zum nächsten Level geleitet`);
+    this.activeLevel += 1;
+    if(this.activeLevel > this.highestLevel){
+      this.highestLevel = this.activeLevel;
+    }
+    this.nextDiagram(this.activeLevel, );
+
     console.log("validate data", this.state);
   }
 }
