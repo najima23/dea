@@ -6,6 +6,9 @@ import produce from "immer";
 import { game } from "./level";
 import { DeaArray, WordGenerator } from './word-generator';
 import { WordChecker } from './word-checker';
+import { Inject} from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
 
 
 class DemoForceDirectedLayout extends go.ForceDirectedLayout {
@@ -22,6 +25,7 @@ class DemoForceDirectedLayout extends go.ForceDirectedLayout {
   }
 }
 
+
 @Component({
   selector: 'app-puzzle-game',
   templateUrl: './puzzle-game.component.html',
@@ -34,6 +38,7 @@ export class PuzzleGameComponent implements OnChanges {
   public game = game;
   public activeLevel = 0;
   public highestLevel = 0;
+  public score = 0;
 
   public task = game[this.activeLevel].task;
   public observedDiagram: any = null;
@@ -49,15 +54,36 @@ export class PuzzleGameComponent implements OnChanges {
 
   @ViewChild('myDiagram', { static: true }) public myDiagramComponent: DiagramComponent | undefined;
 
-  constructor(private cdr: ChangeDetectorRef) { }
+  constructor(private cdr: ChangeDetectorRef, public dialog: MatDialog) { }
+
+  
+  openDialog(check, word) {
+    const dialogRef = this.dialog.open(DialogDataExampleDialog, {
+      width: '250px',
+      position:  {
+        bottom: "200px",
+        right: "100"
+       },
+      data: {
+        winState: check,
+        onNext : this.loadNextLevel.bind(this),
+        word,
+      },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //this.animal = result;
+    });
+  }
 
   public ngOnChanges() {
     // whenever showGrid changes, update the diagram.grid.visible in the child DiagramComponent
     if (this.myDiagramComponent && this.myDiagramComponent.diagram instanceof go.Diagram) {
-      console.log(this.myDiagramComponent.diagram)
+      //console.log(this.myDiagramComponent.diagram)
     }
   }
 
+  
   public ngAfterViewInit() {
     if (this.observedDiagram) return;
     this.observedDiagram = this.myDiagramComponent?.diagram;
@@ -238,14 +264,7 @@ export class PuzzleGameComponent implements OnChanges {
     if (confirm(text) == true) {
       text = "You pressed OK!";
       if (this.myDiagramComponent) {
-        //this.myDiagramComponent.clear();
         this.loadDiagram(this.activeLevel);
-
-        /*this.state = produce(this.state, draft => {
-          draft.skipsDiagramUpdate = false;
-          draft.diagramNodeData = [];
-          draft.diagramLinkData = [];
-        });*/
       }
     } else {
       text = "You canceled!";
@@ -257,7 +276,7 @@ export class PuzzleGameComponent implements OnChanges {
     if (this.myDiagramComponent) {
       this.activeLevel = value;
       this.task = game[value].task
-      //this.myDiagramComponent.clear();
+      this.myDiagramComponent.clear();
       this.state = produce(this.state, draft => {
         draft.skipsDiagramUpdate = false;
         draft.diagramNodeData = game[value].nodes;
@@ -271,7 +290,7 @@ export class PuzzleGameComponent implements OnChanges {
       if (this.myDiagramComponent) {
         this.activeLevel = value;
         this.task = game[value].task
-        //this.myDiagramComponent.clear();
+        this.myDiagramComponent.clear();
         this.state = produce(this.state, draft => {
           draft.skipsDiagramUpdate = false;
           draft.diagramNodeData = game[value].nodes;
@@ -290,16 +309,13 @@ export class PuzzleGameComponent implements OnChanges {
     }*/
     //console.log(wordGenerator.generateWords(deaObject));
 
-    console.log(wordGenerator.generateRandomWords(["1", "0"]));
+    //console.log(wordGenerator.generateRandomWords(["1", "0"]));
 
     //console.log("validate data", this.state);
   }
   checkDea() {
-    //const wordGenerator = new WordGenerator();
-    //const randomGeneratedArray = wordGenerator.generateRandomWords(["1","0"])
     if (this.activeLevel === 0) {
-      console.log("gamee 0", this.activeLevel);
-      alert(`Deine Eingabe ist richtig}`);
+      this.openDialog(true, "");
       return;
     }
     const wordChecker = new WordChecker();
@@ -308,66 +324,103 @@ export class PuzzleGameComponent implements OnChanges {
       links: this.state.diagramLinkData
     }
 
-    //console.log("gameb", game[this.level].solution())
     const randomGeneratedArray = game[this.activeLevel].randomWords();
-
     const referenzautomat = game[this.activeLevel].solution;
-    for (let i = 0; i < randomGeneratedArray.length; i++) {
 
+
+    let isCorrect = true;
+    let word;
+    
+    for (let i = 0; i < randomGeneratedArray.length; i++) {
       const check = wordChecker.checkBeginning(deaObject, randomGeneratedArray[i]);
       const referenzCheck = wordChecker.checkBeginning(referenzautomat, randomGeneratedArray[i]);
 
+      //console.log(check, referenzCheck);
 
-      if (check !== referenzCheck) {
-        alert("Check failed");
-        return;
+      isCorrect = (check.value === referenzCheck.value);
+      word = {word: randomGeneratedArray[i], index:check.index, vergleich: { yourGraph: check.value, referenzGraph: referenzCheck.value}};
+
+      if(!isCorrect) {
+        //console.log("isWrong",isCorrect);
+        break;
       }
     }
-
-    alert(`Deine Eingabe ist richtig}`);
-    console.log("validate data", this.state);
+    //console.log(deaObject, referenzautomat)
+    this.openDialog(isCorrect, word);
   }
 
   loadNextLevel() {
+
     if (this.activeLevel === 0) {
       this.activeLevel = 1;
       this.highestLevel = 1;
-      console.log("gamee 0", this.activeLevel);
-      alert(`Deine Eingabe ist richtig}`);
-      this.nextDiagram(this.activeLevel, );
-
+      this.nextDiagram(this.activeLevel);
       return;
     }
+
     const wordChecker = new WordChecker();
     const deaObject: DeaArray = {
       nodes: this.state.diagramNodeData,
       links: this.state.diagramLinkData
     }
 
-    //console.log("gameb", game[this.level].solution())
     const randomGeneratedArray = game[this.activeLevel].randomWords();
 
     const referenzautomat = game[this.activeLevel].solution;
     for (let i = 0; i < randomGeneratedArray.length; i++) {
 
-      const check = wordChecker.checkBeginning(deaObject, randomGeneratedArray[i]);
-      const referenzCheck = wordChecker.checkBeginning(referenzautomat, randomGeneratedArray[i]);
+      const check = wordChecker.checkBeginning(deaObject, randomGeneratedArray[i]).value;
+      const referenzCheck = wordChecker.checkBeginning(referenzautomat, randomGeneratedArray[i]).value;
 
 
       if (check !== referenzCheck) {
-        alert("Beende dieses Level");
         return;
       }
     }
 
-    alert(`Du wirst zum nächsten Level geleitet`);
+    //alert(`Du wirst zum nächsten Level geleitet`);
     this.activeLevel += 1;
     if(this.activeLevel > this.highestLevel){
       this.highestLevel = this.activeLevel;
     }
     this.nextDiagram(this.activeLevel, );
 
-    console.log("validate data", this.state);
   }
 }
+
+export interface DialogData {
+  winState: boolean;
+  onNext: () => void;
+  word: {
+    word: string;
+    vergleich:{
+      yourGraph: boolean;
+      referenzGraph: boolean;
+    }  ,index?: number;
+
+
+  };
+}
+
+@Component({
+  selector: 'dialog-data-example-dialog',
+  templateUrl: 'dialog-data-example-dialog.html',
+})
+export class DialogDataExampleDialog {
+  constructor(  public dialogRef: MatDialogRef<DialogDataExampleDialog>,
+        @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  onNwxtLevelChanged(): void {
+    this.data.onNext();
+    this.dialogRef.close();
+
+  }
+
+}
+
+
 

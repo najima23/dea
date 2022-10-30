@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Das Ergebnis ist {{data.winState ? 'richtig' : 'falsch'}}</h1>
+<div mat-dialog-content>
+    {{data.word.word}} 
+    <div  *ngIf="!data.winState">
+        <p>Dein Graph liefert {{data.word.vergleich.yourGraph}}</p>
+        <p>der Referenzgraph liefert {{data.word.vergleich.referenzGraph}}</p>
+        <p>Der Fehler ist an der Stelle {{data.word.index! + 1}} </p>
+    </div>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Ok</button>
+
+    <button *ngIf="data.winState" mat-button (click)="onNwxtLevelChanged()">nextLevel</button>
+  </div>

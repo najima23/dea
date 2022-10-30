@@ -31,9 +31,9 @@ import { StartGameComponent } from './start-game/start-game.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PuzzleComponent } from './puzzle/puzzle.component';
 import { PuzzleModule } from './puzzle/puzzle.module';
-import { PuzzleGameComponent } from './puzzle-game/puzzle-game.component';
+import { DialogDataExampleDialog, PuzzleGameComponent } from './puzzle-game/puzzle-game.component';
 import { ExampleComponent } from './example/example.component';
-
+import { CommonModule } from '@angular/common';  
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -85,6 +85,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     NavigationComponent,
+    DialogDataExampleDialog,
     FooterComponent,
     MainPageComponent,
     LoginComponent,
@@ -98,6 +99,7 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     MatButtonModule,
+    CommonModule,
     //DeaModule,
     PuzzleModule,
     MatDialogModule,

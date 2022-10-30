@@ -69,6 +69,7 @@ export class WordGenerator {
 
      generateRandomWord(arr) {
          const length = Math.floor(Math.random() * 25);
+         //console.log(length);
          return Array
          .from({ length },() => arr[Math.floor(Math.random() * arr.length)])
          .join("");
