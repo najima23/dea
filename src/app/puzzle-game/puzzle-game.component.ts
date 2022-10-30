@@ -36,9 +36,9 @@ export class PuzzleGameComponent implements OnChanges {
   public diagramDivClassName: string = 'gojs-wrapper';
   public paletteDivClassName = 'gojs-palette';
   public game = game;
-  public activeLevel = 0;
-  public highestLevel = 0;
-  public score = 0;
+  public activeLevel = parseInt(localStorage.getItem('activeLevel')!)  || 0; 
+  public highestLevel = parseInt(localStorage.getItem('highestLevel')!) || 0;
+  public score = parseInt(localStorage.getItem('score')!) || 0;
 
   public task = game[this.activeLevel].task;
   public observedDiagram: any = null;
@@ -228,16 +228,17 @@ export class PuzzleGameComponent implements OnChanges {
     }, $(go.Shape, "Circle", {
       width: 30, height: 30
     }, new go.Binding("stroke", "stroke"), new go.Binding("fill", "color"), new go.Binding("figure")), $(go.TextBlock, {
-      margin: 2, font: "bold 24px sans-serif"
-    }, new go.Binding("text", "internal")), $(go.TextBlock, { margin: 2 }, new go.Binding("text", "key")),);
+      margin: 2, font: "bold 16px sans-serif"
+    }, new go.Binding("text", "internal")), $(go.TextBlock, { margin: 2, font: " 12px sans-serif" }, new go.Binding("text", "key")),);
 
-    palette.linkTemplate = $(go.Link, { // because the GridLayout.alignment is Location and the nodes have locationSpot == Spot.Center,
-      // to line up the Link in the same manner we have to pretend the Link has the same location spot
+    palette.linkTemplate = $(go.Link, 
+      {
       height: 120, selectionAdornmentTemplate: $(go.Adornment, "Link", $(go.Shape, {
         isPanelMain: true, fill: null, stroke: "deepskyblue", strokeWidth: 0
       }), $(go.Shape,  // the arrowhead
         { toArrow: "Standard", stroke: null }))
-    }, {
+    },
+     {
       routing: go.Link.AvoidsNodes, curve: go.Link.JumpOver, corner: 5, toShortLength: 4
     }, new go.Binding("points"), $(go.Shape,  // the link path shape
       { isPanelMain: true, strokeWidth: 2 }), $(go.Shape,  // the arrowhead
@@ -246,14 +247,12 @@ export class PuzzleGameComponent implements OnChanges {
         }, new go.Binding("text", "key"))),
 
       palette.model = new go.GraphLinksModel([  // specify the contents of the Palette
-        { key: "Ende", color: "white", internal: "", stroke: "black", figure: 'Ring' }, {
-          key: "Edge", color: "white", internal: "", stroke: "black"
-        } // { key: "Link", color: "turquoise", internal: "", stroke: "black" },
+        { key: "Ende", color: "white", internal: "", stroke: "black", figure: 'Ring' }, 
+        {key: "Knoten", color: "white", internal: "", stroke: "black"},
       ], [// the Palette also has a disconnected Link, which the user can drag-and-drop
-        { key: 'Start', points: new go.List().addAll([new go.Point(10, 0), new go.Point(70, 0)]) }, {
-          key: 'Link',
-          points: new go.List().addAll([new go.Point(10, 0), new go.Point(40, 0), new go.Point(40, 40), new go.Point(70, 40)])
-        }]);
+        { key: 'Start', points: new go.List().addAll([new go.Point(10, 0), new go.Point(70, 0)]) },
+
+      ]);
 
     return palette;
   }
@@ -274,6 +273,7 @@ export class PuzzleGameComponent implements OnChanges {
 
   nextDiagram(value: number) {
     if (this.myDiagramComponent) {
+      localStorage.setItem('activeLevel', value.toString());
       this.activeLevel = value;
       this.task = game[value].task
       this.myDiagramComponent.clear();
@@ -288,6 +288,7 @@ export class PuzzleGameComponent implements OnChanges {
   loadDiagram(value: number) {
     if(value <= this.highestLevel){
       if (this.myDiagramComponent) {
+        localStorage.setItem('activeLevel', value.toString());
         this.activeLevel = value;
         this.task = game[value].task
         this.myDiagramComponent.clear();
@@ -332,11 +333,9 @@ export class PuzzleGameComponent implements OnChanges {
     let word;
     
     for (let i = 0; i < randomGeneratedArray.length; i++) {
-      const check = wordChecker.checkBeginning(deaObject, randomGeneratedArray[i]);
+      try {
       const referenzCheck = wordChecker.checkBeginning(referenzautomat, randomGeneratedArray[i]);
-
-      //console.log(check, referenzCheck);
-
+      const check = wordChecker.checkBeginning(deaObject, randomGeneratedArray[i]);
       isCorrect = (check.value === referenzCheck.value);
       word = {word: randomGeneratedArray[i], index:check.index, vergleich: { yourGraph: check.value, referenzGraph: referenzCheck.value}};
 
@@ -344,8 +343,15 @@ export class PuzzleGameComponent implements OnChanges {
         //console.log("isWrong",isCorrect);
         break;
       }
+    } catch (e: any) {
+      alert(e.message);
+      return;
     }
-    //console.log(deaObject, referenzautomat)
+
+    }
+    //score+= game[this.activeLevel].points;
+    console.log("deaObject", deaObject);
+    console.log("refenzautomat", referenzautomat);
     this.openDialog(isCorrect, word);
   }
 
@@ -353,7 +359,13 @@ export class PuzzleGameComponent implements OnChanges {
 
     if (this.activeLevel === 0) {
       this.activeLevel = 1;
-      this.highestLevel = 1;
+      localStorage.setItem('activeLevel', "1");
+
+      if(this.activeLevel > this.highestLevel){
+        localStorage.setItem('highestLevel', this.activeLevel.toString());
+        this.highestLevel = this.activeLevel;
+        this.score = game.levels.filter(a => a < this.highestLevel).reduce((acc, next) => acc + game[next].points ,0)
+      }
       this.nextDiagram(this.activeLevel);
       return;
     }
@@ -380,11 +392,25 @@ export class PuzzleGameComponent implements OnChanges {
 
     //alert(`Du wirst zum nächsten Level geleitet`);
     this.activeLevel += 1;
+    localStorage.setItem('activeLevel', this.activeLevel.toString());
     if(this.activeLevel > this.highestLevel){
+      localStorage.setItem('highestLevel', this.activeLevel.toString());
       this.highestLevel = this.activeLevel;
+      this.score = game.levels.filter(a => a < this.highestLevel).reduce((acc, next) => acc + game[next].points ,0)
     }
     this.nextDiagram(this.activeLevel, );
 
+  }
+
+  resetGame() {
+    localStorage.setItem('activeLevel', "0");
+    this.activeLevel = 0;
+
+    localStorage.setItem('highestLevel',"0");
+    this.highestLevel = 0;
+
+   localStorage.setItem('score', "0");
+   this.score = 0;
   }
 }
 
@@ -419,6 +445,8 @@ export class DialogDataExampleDialog {
     this.dialogRef.close();
 
   }
+
+
 
 }
 

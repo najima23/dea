@@ -33,8 +33,9 @@
   <div class="task">Aufgabe: {{task}}</div>
 <div class="haupt">
   <button class="button is-danger ml-3" (click)="reinitModel()">↺</button>
-  <div class="innen"> Punkte: 00 </div>
+  <div class="innen"> Punkte: {{score}} </div>
   <button class="button is-success mat-button" (click)="checkDea()">▶</button>
+  <button class="button is-success mat-button" (click)="resetGame()"> RESET</button>
 </div>
 
 </div>

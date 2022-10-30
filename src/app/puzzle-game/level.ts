@@ -5,6 +5,7 @@ export const game = {
     task: 'Erzeuge einen beliebegen gueltigen Graphen',
     nodes: [],
     links: [],
+    points: 20
   },
   1: {
     task: 'Stellen Sie die nachfolgenden Sprache als deterministische endliche Automaten dar \n L = {w | w ∈ {0,1}∗ der nur Wörter akzeptiert, die mit 0 anfangen}',
