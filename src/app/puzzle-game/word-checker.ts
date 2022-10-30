@@ -10,9 +10,9 @@ export class WordChecker {
     }
 
     checkWordRekursive(dea: DeaArray, word: string, currentNode: DeaNode, index: number): {value: boolean, index: number} {
-        console.log(word, index)
+        //console.log(word, index)
         if (word === "") {
-            console.log(currentNode);
+            //console.log(currentNode);
             if (currentNode!.figure === "Ring") {
                 return {value: true, index};
             } else {
@@ -22,7 +22,7 @@ export class WordChecker {
 
         const outgoingLinks = dea.links.filter(link => link.from === currentNode!.id);
         const foundLinks = outgoingLinks.filter(link => link?.text?.includes(word[0]));
-        console.log("foundLinkSLänge",foundLinks.length);
+        //console.log("foundLinkSLänge",foundLinks.length);
         
         if(foundLinks.length > 1){
             throw new Error("ausgehende Kanten müssen eindeutig definiert sein!");
@@ -30,8 +30,8 @@ export class WordChecker {
 
         const foundLink = foundLinks[0];
 
-        console.log("Outlinks",outgoingLinks);
-        console.log("foundlink",foundLink);
+        //console.log("Outlinks",outgoingLinks);
+        //console.log("foundlink",foundLink);
 
         if (foundLink && foundLink!.text?.length > 0) {
             word = word.substring(1);

@@ -350,8 +350,8 @@ export class PuzzleGameComponent implements OnChanges {
 
     }
     //score+= game[this.activeLevel].points;
-    console.log("deaObject", deaObject);
-    console.log("refenzautomat", referenzautomat);
+    //console.log("deaObject", deaObject);
+    //console.log("refenzautomat", referenzautomat);
     this.openDialog(isCorrect, word);
   }
 
