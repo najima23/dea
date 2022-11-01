@@ -24,8 +24,6 @@ import { ProfileComponent } from './profile/profile.component'; // Angular CLI e
 import { StartGameModule } from './start-game/start-game.module';
 import { StartGameComponent } from './start-game/start-game.component';
 import { HttpClientModule } from '@angular/common/http';
-import { PuzzleComponent } from './puzzle/puzzle.component';
-import { PuzzleModule } from './puzzle/puzzle.module';
 import { DialogDataExampleDialog, PuzzleGameComponent } from './puzzle-game/puzzle-game.component';
 import { CommonModule } from '@angular/common';
 
@@ -89,7 +87,6 @@ const appRoutes: Routes = [
     MatButtonModule,
     CommonModule,
     //DeaModule,
-    PuzzleModule,
     MatDialogModule,
     HttpClientModule,
     KeycloakAngularModule,

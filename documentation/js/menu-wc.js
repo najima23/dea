@@ -103,23 +103,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AuthModule.html" data-type="entity-link" >AuthModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/PuzzleModule.html" data-type="entity-link" >PuzzleModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-PuzzleModule-df9c6111d47a791b73c7541c78e42836501ba967da8d360a704245b0e84f536e1f2e06522935c95ff2c00f5352caee831ee2ddd5fe7726d47b25954d187ed4a2"' : 'data-target="#xs-components-links-module-PuzzleModule-df9c6111d47a791b73c7541c78e42836501ba967da8d360a704245b0e84f536e1f2e06522935c95ff2c00f5352caee831ee2ddd5fe7726d47b25954d187ed4a2"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-PuzzleModule-df9c6111d47a791b73c7541c78e42836501ba967da8d360a704245b0e84f536e1f2e06522935c95ff2c00f5352caee831ee2ddd5fe7726d47b25954d187ed4a2"' :
-                                            'id="xs-components-links-module-PuzzleModule-df9c6111d47a791b73c7541c78e42836501ba967da8d360a704245b0e84f536e1f2e06522935c95ff2c00f5352caee831ee2ddd5fe7726d47b25954d187ed4a2"' }>
-                                            <li class="link">
-                                                <a href="components/PuzzleComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PuzzleComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
                                 <a href="modules/StartGameModule.html" data-type="entity-link" >StartGameModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
