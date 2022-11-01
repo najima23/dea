@@ -102,6 +102,12 @@
   align-items: center;
   justify-content: center; 
 }
+.zurück{
+  position: absolute;
+    top: 6px;
+    left: 234px;
+    z-index: 1000;
+}
 
 li.active{
   background-color: darkcyan;

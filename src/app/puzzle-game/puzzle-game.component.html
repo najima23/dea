@@ -26,16 +26,19 @@
     </gojs-palette>
   </div>
 
-
 </div>
 <div class="unten"> 
+  <div class="zurück">
+    <button class="button is-danger mat-button ResetButton" (click)="resetGame()"> RESET</button>
+  </div>
 <div class="unten-zwei">
   <div class="task">Aufgabe: {{task}}</div>
 <div class="haupt">
   <button class="button is-danger ml-3" (click)="reinitModel()">↺</button>
   <div class="innen"> Punkte: {{score}} </div>
   <button class="button is-success mat-button" (click)="checkDea()">▶</button>
-  <button class="button is-success mat-button" (click)="resetGame()"> RESET</button>
+
+  
 </div>
 
 </div>

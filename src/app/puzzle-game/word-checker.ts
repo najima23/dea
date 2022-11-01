@@ -3,6 +3,12 @@ import { DeaArray, DeaNode } from "./word-generator";
 export class WordChecker {
 
     checkBeginning(dea: DeaArray, word: string): {value: boolean, index: number} {
+        
+               
+       /* if(dea.links.filter(link => link.to === undefined)){
+            alert("Bitte füge ein StartLink hinzu");
+       } */
+
         const currentStartLink = dea.links.find(link => link.key === "Start");
         const currentNode = dea.nodes.find(node => node.id === currentStartLink!.to);
         //console.log("Beginn:",word)

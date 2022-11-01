@@ -55,14 +55,14 @@ function initializeKeycloak(keycloak: KeycloakService) {
 
 
 const appRoutes: Routes = [
-  { path: '', component: MainPageComponent },
+  { path: '', component: StartGameComponent },
   { path: 'login', redirectTo: '/startgame'},
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'test2', component: StartGameComponent },
+  { path: 'docu', component: MainPageComponent },
 
   {
-    path: 'start',
+    path: 'home',
     component: StartGameComponent,
     canActivate:[AuthGuard]
   },
@@ -78,7 +78,7 @@ const appRoutes: Routes = [
     canActivate:[AuthGuard]
   },
 
-  { path: '**', component: MainPageComponent },
+  { path: '**', component: StartGameComponent },
 ];
 
 @NgModule({

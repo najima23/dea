@@ -229,7 +229,7 @@ export class PuzzleGameComponent implements OnChanges {
       width: 30, height: 30
     }, new go.Binding("stroke", "stroke"), new go.Binding("fill", "color"), new go.Binding("figure")), $(go.TextBlock, {
       margin: 2, font: "bold 16px sans-serif"
-    }, new go.Binding("text", "internal")), $(go.TextBlock, { margin: 2, font: " 12px sans-serif" }, new go.Binding("text", "key")),);
+    }, new go.Binding("text", "internal")), $(go.TextBlock, { margin: 2, font: " 11px sans-serif" }, new go.Binding("text", "key")),);
 
     palette.linkTemplate = $(go.Link, 
       {
@@ -315,10 +315,13 @@ export class PuzzleGameComponent implements OnChanges {
     //console.log("validate data", this.state);
   }
   checkDea() {
+   
+
     if (this.activeLevel === 0) {
       this.openDialog(true, "");
       return;
     }
+
     const wordChecker = new WordChecker();
     const deaObject: DeaArray = {
       nodes: this.state.diagramNodeData,
@@ -403,14 +406,21 @@ export class PuzzleGameComponent implements OnChanges {
   }
 
   resetGame() {
-    localStorage.setItem('activeLevel', "0");
-    this.activeLevel = 0;
 
-    localStorage.setItem('highestLevel',"0");
-    this.highestLevel = 0;
+    if (confirm('Bist du dir sicher das du alle Leveln und deine Stand zurücksetzen möchtest?')) {
+      localStorage.setItem('activeLevel', "0");
+      this.activeLevel = 0;
+  
+      localStorage.setItem('highestLevel',"0");
+      this.highestLevel = 0;
+  
+     localStorage.setItem('score', "0");
+     this.score = 0;
+    } else {
+      
+    }
 
-   localStorage.setItem('score', "0");
-   this.score = 0;
+
   }
 }
 

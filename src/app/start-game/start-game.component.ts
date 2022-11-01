@@ -16,7 +16,6 @@ export class StartGameComponent implements OnInit {
   showUser() {
     this.usersService.getUser()
       .subscribe((data: any) => {
-        console.log("fuck you du hund")
         console.log(data)
       });      
   }
