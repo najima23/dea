@@ -73,6 +73,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                                 <a href="components/DialogComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >DialogComponent</a>
                                             </li>
                                             <li class="link">
+                                                <a href="components/DialogDataExampleDialog.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >DialogDataExampleDialog</a>
+                                            </li>
+                                            <li class="link">
                                                 <a href="components/FooterComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FooterComponent</a>
                                             </li>
                                             <li class="link">
@@ -132,43 +135,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         'id="xs-injectables-links-module-DeaModule-e5cd1f8a6753c72d970a9e8d9a8d23eaedc229d9d9b14af171f1df0fb95fb1e285d7dc1b2c4024377ed1683fed6bba7ceb04f3a9ef890c6089cc07e4f663dc35"' }>
                                         <li class="link">
                                             <a href="injectables/DeaService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >DeaService</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/GrammarModule.html" data-type="entity-link" >GrammarModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-GrammarModule-836a74640efa43c67818521eabe5d6e8cfcb301e935640c3bb65fef8ca020a3e628bb4f3780f2abbaf345c530133b2ebac5a412dda8d0bb4f48493778cc9fb72"' : 'data-target="#xs-components-links-module-GrammarModule-836a74640efa43c67818521eabe5d6e8cfcb301e935640c3bb65fef8ca020a3e628bb4f3780f2abbaf345c530133b2ebac5a412dda8d0bb4f48493778cc9fb72"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-GrammarModule-836a74640efa43c67818521eabe5d6e8cfcb301e935640c3bb65fef8ca020a3e628bb4f3780f2abbaf345c530133b2ebac5a412dda8d0bb4f48493778cc9fb72"' :
-                                            'id="xs-components-links-module-GrammarModule-836a74640efa43c67818521eabe5d6e8cfcb301e935640c3bb65fef8ca020a3e628bb4f3780f2abbaf345c530133b2ebac5a412dda8d0bb4f48493778cc9fb72"' }>
-                                            <li class="link">
-                                                <a href="components/GrammarComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >GrammarComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/GrammarGraphComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >GrammarGraphComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                <li class="chapter inner">
-                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-GrammarModule-836a74640efa43c67818521eabe5d6e8cfcb301e935640c3bb65fef8ca020a3e628bb4f3780f2abbaf345c530133b2ebac5a412dda8d0bb4f48493778cc9fb72"' : 'data-target="#xs-injectables-links-module-GrammarModule-836a74640efa43c67818521eabe5d6e8cfcb301e935640c3bb65fef8ca020a3e628bb4f3780f2abbaf345c530133b2ebac5a412dda8d0bb4f48493778cc9fb72"' }>
-                                        <span class="icon ion-md-arrow-round-down"></span>
-                                        <span>Injectables</span>
-                                        <span class="icon ion-ios-arrow-down"></span>
-                                    </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-GrammarModule-836a74640efa43c67818521eabe5d6e8cfcb301e935640c3bb65fef8ca020a3e628bb4f3780f2abbaf345c530133b2ebac5a412dda8d0bb4f48493778cc9fb72"' :
-                                        'id="xs-injectables-links-module-GrammarModule-836a74640efa43c67818521eabe5d6e8cfcb301e935640c3bb65fef8ca020a3e628bb4f3780f2abbaf345c530133b2ebac5a412dda8d0bb4f48493778cc9fb72"' }>
-                                        <li class="link">
-                                            <a href="injectables/GrammarGraphService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >GrammarGraphService</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="injectables/GrammarService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >GrammarService</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -254,12 +220,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/DemoForceDirectedLayout.html" data-type="entity-link" >DemoForceDirectedLayout</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ExpressionGrammarModel.html" data-type="entity-link" >ExpressionGrammarModel</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/RuleSetInterface.html" data-type="entity-link" >RuleSetInterface</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/WordChecker.html" data-type="entity-link" >WordChecker</a>
                             </li>
                             <li class="link">
@@ -304,15 +264,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/DialogData.html" data-type="entity-link" >DialogData</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/FourTuple.html" data-type="entity-link" >FourTuple</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/GrammarModel.html" data-type="entity-link" >GrammarModel</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/GrammarState.html" data-type="entity-link" >GrammarState</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/User.html" data-type="entity-link" >User</a>
                             </li>
                             <li class="link">
@@ -333,9 +284,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         <ul class="links collapse " ${ isNormalMode ? 'id="miscellaneous-links"' : 'id="xs-miscellaneous-links"' }>
                             <li class="link">
                                 <a href="miscellaneous/functions.html" data-type="entity-link">Functions</a>
-                            </li>
-                            <li class="link">
-                                <a href="miscellaneous/typealiases.html" data-type="entity-link">Type aliases</a>
                             </li>
                             <li class="link">
                                 <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>
