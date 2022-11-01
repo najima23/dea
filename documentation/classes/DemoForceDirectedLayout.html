@@ -1,0 +1,724 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>dea documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">dea documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Classes</li>
+  <li >DemoForceDirectedLayout</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/puzzle-game/puzzle-game.component.ts</code>
+        </p>
+
+
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#makeNetwork" >makeNetwork</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeNetwork"></a>
+                    <span class="name">
+                        <span class="modifier"></span>
+                        <span ><b>makeNetwork</b></span>
+                        <a href="#makeNetwork"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>makeNetwork(coll)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/app/puzzle-game/puzzle-game.component.ts:17</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>coll</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectorRef, Component, OnChanges, ViewChild, ViewEncapsulation } from &#x27;@angular/core&#x27;;
+import * as go from &#x27;gojs&#x27;;
+import { initRing } from &quot;./shapes/shape&quot;;
+import { DataSyncService, DiagramComponent } from &quot;gojs-angular&quot;;
+import produce from &quot;immer&quot;;
+import { game } from &quot;./level&quot;;
+import { DeaArray, WordGenerator } from &#x27;./word-generator&#x27;;
+import { WordChecker } from &#x27;./word-checker&#x27;;
+import { Inject} from &#x27;@angular/core&#x27;;
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from &#x27;@angular/material/dialog&#x27;;
+
+
+
+class DemoForceDirectedLayout extends go.ForceDirectedLayout {
+  // Override the makeNetwork method to also initialize
+  // ForceDirectedVertex.isFixed from the corresponding Node.isSelected.
+  override makeNetwork(coll) {
+    // call base method for standard behavior
+    const net &#x3D; super.makeNetwork(coll);
+    net.vertexes.each(vertex &#x3D;&gt; {
+      const node &#x3D; vertex.node;
+      if (node !&#x3D;&#x3D; null) (vertex as any).isFixed &#x3D; node.isSelected;
+    });
+    return net;
+  }
+}
+
+
+@Component({
+  selector: &#x27;app-puzzle-game&#x27;,
+  templateUrl: &#x27;./puzzle-game.component.html&#x27;,
+  styleUrls: [&#x27;./puzzle-game.component.css&#x27;],
+  encapsulation: ViewEncapsulation.None
+})
+export class PuzzleGameComponent implements OnChanges {
+  public diagramDivClassName: string &#x3D; &#x27;gojs-wrapper&#x27;;
+  public paletteDivClassName &#x3D; &#x27;gojs-palette&#x27;;
+  public game &#x3D; game;
+  public activeLevel &#x3D; parseInt(localStorage.getItem(&#x27;activeLevel&#x27;)!)  || 0; 
+  public highestLevel &#x3D; parseInt(localStorage.getItem(&#x27;highestLevel&#x27;)!) || 0;
+  public score &#x3D; parseInt(localStorage.getItem(&#x27;score&#x27;)!) || 0;
+
+  public task &#x3D; game[this.activeLevel].task;
+  public observedDiagram: any &#x3D; null;
+
+
+  public state: any &#x3D; {
+    diagramNodeData: game[0].nodes,
+    diagramLinkData: game[0].links,
+    diagramModelData: { prop: &#x27;value&#x27; },
+    skipsDiagramUpdate: false,
+    paletteNodeData: []
+  };
+
+  @ViewChild(&#x27;myDiagram&#x27;, { static: true }) public myDiagramComponent: DiagramComponent | undefined;
+
+  constructor(private cdr: ChangeDetectorRef, public dialog: MatDialog) { }
+
+  
+  openDialog(check, word) {
+    const dialogRef &#x3D; this.dialog.open(DialogDataExampleDialog, {
+      width: &#x27;250px&#x27;,
+      position:  {
+        bottom: &quot;200px&quot;,
+        right: &quot;100&quot;
+       },
+      data: {
+        winState: check,
+        onNext : this.loadNextLevel.bind(this),
+        word,
+      },
+    });
+    dialogRef.afterClosed().subscribe(result &#x3D;&gt; {
+      console.log(&#x27;The dialog was closed&#x27;);
+      //this.animal &#x3D; result;
+    });
+  }
+
+  public ngOnChanges() {
+    // whenever showGrid changes, update the diagram.grid.visible in the child DiagramComponent
+    if (this.myDiagramComponent &amp;&amp; this.myDiagramComponent.diagram instanceof go.Diagram) {
+      //console.log(this.myDiagramComponent.diagram)
+    }
+  }
+
+  
+  public ngAfterViewInit() {
+    if (this.observedDiagram) return;
+    this.observedDiagram &#x3D; this.myDiagramComponent?.diagram;
+    this.cdr.detectChanges(); // IMPORTANT: without this, Angular will throw ExpressionChangedAfterItHasBeenCheckedError (dev mode only)
+
+    const appComp: any &#x3D; this;
+    // listener for inspector
+    this.myDiagramComponent?.diagram.addDiagramListener(&#x27;ChangedSelection&#x27;, function (e) {
+      if (e.diagram.selection.count &#x3D;&#x3D;&#x3D; 0) {
+        appComp.selectedNodeData &#x3D; null;
+      }
+      const node &#x3D; e.diagram.selection.first();
+      appComp.state &#x3D; produce(appComp.state, draft &#x3D;&gt; {
+        if (node instanceof go.Node) {
+          var idx &#x3D; draft.diagramNodeData.findIndex(nd &#x3D;&gt; nd.id &#x3D;&#x3D; node.data.id);
+          var nd &#x3D; draft.diagramNodeData[idx];
+          draft.selectedNodeData &#x3D; nd;
+        } else {
+          draft.selectedNodeData &#x3D; null;
+        }
+      });
+    });
+  } // end ngAfterViewInit
+
+  public initDiagram(): go.Diagram {
+    const $ &#x3D; go.GraphObject.make;
+    const diagram &#x3D; $(go.Diagram, {
+      &#x27;undoManager.isEnabled&#x27;: true,
+      &quot;linkingTool.isUnconnectedLinkValid&quot;: true,
+      &quot;draggingTool.dragsLink&quot;: true,
+      &quot;draggingTool.isGridSnapEnabled&quot;: true,
+      &quot;relinkingTool.isUnconnectedLinkValid&quot;: true,
+      &quot;relinkingTool.portGravity&quot;: 20,
+      layout: new DemoForceDirectedLayout(),
+      model: new go.GraphLinksModel({
+        linkFromPortIdProperty: &quot;fromPort&quot;,
+        linkToPortIdProperty: &quot;toPort&quot;,
+        nodeKeyProperty: &#x27;id&#x27;,
+        linkKeyProperty: &#x27;key&#x27;
+      })
+    });
+
+
+
+    // define the Node template
+    diagram.nodeTemplate &#x3D; $(go.Node, &quot;Auto&quot;, { zOrder: -5 }, new go.Binding(&quot;layerName&quot;, &quot;Background&quot;), $(go.Shape, &quot;Circle&quot;, { fill: &quot;lightgray&quot; }, new go.Binding(&quot;stroke&quot;, &quot;stroke&quot;), new go.Binding(&quot;fill&quot;, &quot;color&quot;), new go.Binding(&quot;figure&quot;)), $(go.Panel, &quot;Table&quot;, $(go.RowColumnDefinition, {
+      column: 0, alignment: go.Spot.Left
+    }), $(go.TextBlock, {
+      column: 0,
+      row: 0,
+      columnSpan: 3,
+      editable: true,
+      alignment: go.Spot.Center,
+      font: &quot;bold 10pt sans-serif&quot;,
+      margin: new go.Margin(4, 2)
+    }, new go.Binding(&quot;text&quot;, &quot;text&quot;).makeTwoWay()), $(go.Panel, &quot;Horizontal&quot;, { column: 1, row: 1 }, $(go.Shape, {
+      width: 6,
+      height: 6,
+      portId: &quot;A&quot;,
+      toLinkable: true,
+      fromLinkable: true,
+      cursor: &#x27;pointer&#x27;,
+      fromLinkableDuplicates: true,
+      toLinkableDuplicates: true,
+      fromLinkableSelfNode: true,
+      toLinkableSelfNode: true
+    }))));
+
+    diagram.linkTemplate &#x3D; $(go.Link, { zOrder: 50 }, new go.Binding(&quot;layerName&quot;, &quot;Foreground&quot;), new go.Binding(&quot;points&quot;), $(go.Shape,  // the link path shape
+      { isPanelMain: true, strokeWidth: 2 }), $(go.Shape,  // the arrowhead
+        { toArrow: &quot;Standard&quot;, stroke: null }), $(go.TextBlock, {
+          margin: 10,
+          background: &#x27;white&#x27;,
+          editable: true,
+          width: 30,
+          height: 30,
+          alignment: go.Spot.Center,
+          verticalAlignment: go.Spot.Center,
+          textAlign: &#x27;center&#x27;
+        }, new go.Binding(&quot;text&quot;, &quot;text&quot;).makeTwoWay()));
+
+    return diagram;
+  }
+
+  public diagramModelChange &#x3D; (changes: go.IncrementalData) &#x3D;&gt; {
+    if (!changes) return;
+    const appComp &#x3D; this;
+    this.state &#x3D; produce(this.state, draft &#x3D;&gt; {
+      // set skipsDiagramUpdate: true since GoJS already has this update
+      // this way, we don&#x27;t log an unneeded transaction in the Diagram&#x27;s undoManager history
+      draft.skipsDiagramUpdate &#x3D; true;
+      draft.diagramNodeData &#x3D; DataSyncService.syncNodeData(changes, draft.diagramNodeData, appComp.observedDiagram.model);
+      draft.diagramLinkData &#x3D; DataSyncService.syncLinkData(changes, draft.diagramLinkData, appComp.observedDiagram.model);
+      draft.diagramModelData &#x3D; DataSyncService.syncModelData(changes, draft.diagramModelData);
+      // If one of the modified nodes was the selected node used by the inspector, update the inspector selectedNodeData object
+      const modifiedNodeDatas &#x3D; changes.modifiedNodeData;
+      if (modifiedNodeDatas &amp;&amp; draft.selectedNodeData) {
+        for (let i &#x3D; 0; i &lt; modifiedNodeDatas.length; i++) {
+          const mn &#x3D; modifiedNodeDatas[i];
+          const nodeKeyProperty &#x3D; appComp.myDiagramComponent?.diagram.model.nodeKeyProperty as string;
+          if (mn[nodeKeyProperty] &#x3D;&#x3D;&#x3D; draft.selectedNodeData[nodeKeyProperty]) {
+            draft.selectedNodeData &#x3D; mn;
+          }
+        }
+      }
+    });
+    /*    const viewNode &#x3D; this.myDiagramComponent?.diagram.nodes!;
+       const viewLink &#x3D; this.myDiagramComponent?.diagram.links!;
+   
+       const nodes: any &#x3D; [];
+       const links: any &#x3D; [];
+       
+       console.log(&quot;hchhchchhch&quot;, changes);
+       
+       while(viewNode.next()) {
+         nodes.push(viewNode.value.data);
+       }
+   
+       while(viewLink.next()) {
+         links.push(viewLink.value.data);
+       }
+       console.log(&quot;links&quot;, links);
+       console.log(&quot;nodes&quot;, nodes);
+   
+         this.state &#x3D; produce(this.state, draft &#x3D;&gt; {
+           draft.skipsDiagramUpdate &#x3D; true;
+           draft.diagramNodeData &#x3D; nodes;
+           draft.diagramLinkData &#x3D; links;
+         }); */
+  };
+
+  public initPalette(): go.Palette {
+    const $ &#x3D; go.GraphObject.make;
+    const palette &#x3D; $(go.Palette);
+    initRing();
+
+    palette.padding &#x3D; new go.Margin(100, 0, 0, 0);
+
+    // define the Node template
+    palette.nodeTemplate &#x3D; $(go.Node, &quot;Horizontal&quot;, {
+      height: 120, width: 80, selectionAdorned: false, cursor: &#x27;grab&#x27;
+    }, $(go.Shape, &quot;Circle&quot;, {
+      width: 30, height: 30
+    }, new go.Binding(&quot;stroke&quot;, &quot;stroke&quot;), new go.Binding(&quot;fill&quot;, &quot;color&quot;), new go.Binding(&quot;figure&quot;)), $(go.TextBlock, {
+      margin: 2, font: &quot;bold 16px sans-serif&quot;
+    }, new go.Binding(&quot;text&quot;, &quot;internal&quot;)), $(go.TextBlock, { margin: 2, font: &quot; 11px sans-serif&quot; }, new go.Binding(&quot;text&quot;, &quot;key&quot;)),);
+
+    palette.linkTemplate &#x3D; $(go.Link, 
+      {
+      height: 120, selectionAdornmentTemplate: $(go.Adornment, &quot;Link&quot;, $(go.Shape, {
+        isPanelMain: true, fill: null, stroke: &quot;deepskyblue&quot;, strokeWidth: 0
+      }), $(go.Shape,  // the arrowhead
+        { toArrow: &quot;Standard&quot;, stroke: null }))
+    },
+     {
+      routing: go.Link.AvoidsNodes, curve: go.Link.JumpOver, corner: 5, toShortLength: 4
+    }, new go.Binding(&quot;points&quot;), $(go.Shape,  // the link path shape
+      { isPanelMain: true, strokeWidth: 2 }), $(go.Shape,  // the arrowhead
+        { toArrow: &quot;Standard&quot;, stroke: null }), $(go.TextBlock, {
+          margin: 4, background: &#x27;white&#x27;
+        }, new go.Binding(&quot;text&quot;, &quot;key&quot;))),
+
+      palette.model &#x3D; new go.GraphLinksModel([  // specify the contents of the Palette
+        { key: &quot;Ende&quot;, color: &quot;white&quot;, internal: &quot;&quot;, stroke: &quot;black&quot;, figure: &#x27;Ring&#x27; }, 
+        {key: &quot;Knoten&quot;, color: &quot;white&quot;, internal: &quot;&quot;, stroke: &quot;black&quot;},
+      ], [// the Palette also has a disconnected Link, which the user can drag-and-drop
+        { key: &#x27;Start&#x27;, points: new go.List().addAll([new go.Point(10, 0), new go.Point(70, 0)]) },
+
+      ]);
+
+    return palette;
+  }
+
+  public reinitModel() {
+
+    let text &#x3D; &quot;Bist du dir sicher?!\nOK or Cancel.&quot;;
+    if (confirm(text) &#x3D;&#x3D; true) {
+      text &#x3D; &quot;You pressed OK!&quot;;
+      if (this.myDiagramComponent) {
+        this.loadDiagram(this.activeLevel);
+      }
+    } else {
+      text &#x3D; &quot;You canceled!&quot;;
+    }
+  }
+
+
+  nextDiagram(value: number) {
+    if (this.myDiagramComponent) {
+      localStorage.setItem(&#x27;activeLevel&#x27;, value.toString());
+      this.activeLevel &#x3D; value;
+      this.task &#x3D; game[value].task
+      this.myDiagramComponent.clear();
+      this.state &#x3D; produce(this.state, draft &#x3D;&gt; {
+        draft.skipsDiagramUpdate &#x3D; false;
+        draft.diagramNodeData &#x3D; game[value].nodes;
+        draft.diagramLinkData &#x3D; game[value].links as any;
+      });
+    }
+  }
+
+  loadDiagram(value: number) {
+    if(value &lt;&#x3D; this.highestLevel){
+      if (this.myDiagramComponent) {
+        localStorage.setItem(&#x27;activeLevel&#x27;, value.toString());
+        this.activeLevel &#x3D; value;
+        this.task &#x3D; game[value].task
+        this.myDiagramComponent.clear();
+        this.state &#x3D; produce(this.state, draft &#x3D;&gt; {
+          draft.skipsDiagramUpdate &#x3D; false;
+          draft.diagramNodeData &#x3D; game[value].nodes;
+          draft.diagramLinkData &#x3D; game[value].links as any;
+        });
+      }
+    }
+
+  }
+
+  validateDiagram() {
+    const wordGenerator &#x3D; new WordGenerator();
+    /*const deaObject: DeaArray &#x3D; {
+      nodes: this.state.diagramNodeData,
+      links: this.state.diagramLinkData
+    }*/
+    //console.log(wordGenerator.generateWords(deaObject));
+
+    //console.log(wordGenerator.generateRandomWords([&quot;1&quot;, &quot;0&quot;]));
+
+    //console.log(&quot;validate data&quot;, this.state);
+  }
+  checkDea() {
+  
+
+    if (this.activeLevel &#x3D;&#x3D;&#x3D; 0) {
+      this.openDialog(true, &quot;&quot;);
+      return;
+    }
+
+    const wordChecker &#x3D; new WordChecker();
+    const deaObject: DeaArray &#x3D; {
+      nodes: this.state.diagramNodeData,
+      links: this.state.diagramLinkData
+    }
+
+     if(!deaObject.links.find(link &#x3D;&gt; link.key &#x3D;&#x3D;&#x3D; &quot;Start&quot;)){
+            alert(&quot;Bitte füge ein StartLink hinzu&quot;);
+            return;
+       } 
+    const randomGeneratedArray &#x3D; game[this.activeLevel].randomWords();
+    const referenzautomat &#x3D; game[this.activeLevel].solution;
+
+
+    let isCorrect &#x3D; true;
+    let word;
+    
+    for (let i &#x3D; 0; i &lt; randomGeneratedArray.length; i++) {
+      try {
+      const referenzCheck &#x3D; wordChecker.checkBeginning(referenzautomat, randomGeneratedArray[i]);
+      const check &#x3D; wordChecker.checkBeginning(deaObject, randomGeneratedArray[i]);
+      isCorrect &#x3D; (check.value &#x3D;&#x3D;&#x3D; referenzCheck.value);
+      word &#x3D; {word: randomGeneratedArray[i], index:check.index, vergleich: { yourGraph: check.value, referenzGraph: referenzCheck.value}};
+
+      if(!isCorrect) {
+        //console.log(&quot;isWrong&quot;,isCorrect);
+        break;
+      }
+    } catch (e: any) {
+      alert(e.message);
+      return;
+    }
+
+    }
+    //score+&#x3D; game[this.activeLevel].points;
+    //console.log(&quot;deaObject&quot;, deaObject);
+    //console.log(&quot;refenzautomat&quot;, referenzautomat);
+    this.openDialog(isCorrect, word);
+  }
+
+  loadNextLevel() {
+
+    if (this.activeLevel &#x3D;&#x3D;&#x3D; 0) {
+      this.activeLevel &#x3D; 1;
+      localStorage.setItem(&#x27;activeLevel&#x27;, &quot;1&quot;);
+
+      if(this.activeLevel &gt; this.highestLevel){
+        localStorage.setItem(&#x27;highestLevel&#x27;, this.activeLevel.toString());
+        this.highestLevel &#x3D; this.activeLevel;
+        this.score &#x3D; game.levels.filter(a &#x3D;&gt; a &lt; this.highestLevel).reduce((acc, next) &#x3D;&gt; acc + game[next].points ,0)
+      }
+      this.nextDiagram(this.activeLevel);
+      return;
+    }
+
+    const wordChecker &#x3D; new WordChecker();
+    const deaObject: DeaArray &#x3D; {
+      nodes: this.state.diagramNodeData,
+      links: this.state.diagramLinkData
+    }
+
+    const randomGeneratedArray &#x3D; game[this.activeLevel].randomWords();
+
+    const referenzautomat &#x3D; game[this.activeLevel].solution;
+    for (let i &#x3D; 0; i &lt; randomGeneratedArray.length; i++) {
+
+      const check &#x3D; wordChecker.checkBeginning(deaObject, randomGeneratedArray[i]).value;
+      const referenzCheck &#x3D; wordChecker.checkBeginning(referenzautomat, randomGeneratedArray[i]).value;
+
+
+      if (check !&#x3D;&#x3D; referenzCheck) {
+        return;
+      }
+    }
+
+    //alert(&#x60;Du wirst zum nächsten Level geleitet&#x60;);
+    this.activeLevel +&#x3D; 1;
+    localStorage.setItem(&#x27;activeLevel&#x27;, this.activeLevel.toString());
+    if(this.activeLevel &gt; this.highestLevel){
+      localStorage.setItem(&#x27;highestLevel&#x27;, this.activeLevel.toString());
+      this.highestLevel &#x3D; this.activeLevel;
+      this.score &#x3D; game.levels.filter(a &#x3D;&gt; a &lt; this.highestLevel).reduce((acc, next) &#x3D;&gt; acc + game[next].points ,0)
+    }
+    this.nextDiagram(this.activeLevel, );
+
+  }
+
+  resetGame() {
+
+    if (confirm(&#x27;Bist du dir sicher das du alle Leveln und deine Stand zurücksetzen möchtest?&#x27;)) {
+      localStorage.setItem(&#x27;activeLevel&#x27;, &quot;0&quot;);
+      this.activeLevel &#x3D; 0;
+  
+      localStorage.setItem(&#x27;highestLevel&#x27;,&quot;0&quot;);
+      this.highestLevel &#x3D; 0;
+  
+     localStorage.setItem(&#x27;score&#x27;, &quot;0&quot;);
+     this.score &#x3D; 0;
+    } else {
+      
+    }
+
+
+  }
+}
+
+export interface DialogData {
+  winState: boolean;
+  onNext: () &#x3D;&gt; void;
+  word: {
+    word: string;
+    vergleich:{
+      yourGraph: boolean;
+      referenzGraph: boolean;
+    }  ,index?: number;
+
+
+  };
+}
+
+@Component({
+  selector: &#x27;dialog-data-example-dialog&#x27;,
+  templateUrl: &#x27;dialog-data-example-dialog.html&#x27;,
+})
+export class DialogDataExampleDialog {
+  constructor(  public dialogRef: MatDialogRef&lt;DialogDataExampleDialog&gt;,
+        @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  onNwxtLevelChanged(): void {
+    this.data.onNext();
+    this.dialogRef.close();
+
+  }
+
+
+
+}
+
+
+
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'DemoForceDirectedLayout.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

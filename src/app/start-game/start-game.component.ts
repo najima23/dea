@@ -1,5 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { UsersService } from '../users.service';
+
+interface User{
+  id:string;
+  username:string;
+  firstName:string;
+  lastName:string;
+  email: string
+}
 
 @Component({
   selector: 'app-start-game',
@@ -7,11 +17,16 @@ import { UsersService } from '../users.service';
   styleUrls: ['./start-game.component.css']
 })
 export class StartGameComponent implements OnInit {
-  currentUser: any;
+  currentUser: Observable<User>;
+  level: Observable<any>;
 
   constructor(
     private usersService: UsersService,
-  ){}
+    private store: Store<{ count: User, level: any }> ){
+    this.currentUser = this.store.select('count') as Observable<User>;
+    this.level = this.store.select('level') as Observable<any>;
+
+  }
 
   showUser() {
     this.usersService.getUser()
@@ -23,7 +38,7 @@ export class StartGameComponent implements OnInit {
   showOneUser() {
     this.usersService.getOneUser()
       .subscribe((data: any) => {
-        this.currentUser = data
+        //this.currentUser = data
       });      
   }
 

@@ -7,7 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "compodoc": "npx compodoc -p tsconfig.doc.json -p tsconfig.json -w -s --port 9000 "
+
   },
   "private": true,
   "dependencies": {

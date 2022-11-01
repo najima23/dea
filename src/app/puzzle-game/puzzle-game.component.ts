@@ -315,7 +315,7 @@ export class PuzzleGameComponent implements OnChanges {
     //console.log("validate data", this.state);
   }
   checkDea() {
-   
+  
 
     if (this.activeLevel === 0) {
       this.openDialog(true, "");
@@ -328,6 +328,10 @@ export class PuzzleGameComponent implements OnChanges {
       links: this.state.diagramLinkData
     }
 
+     if(!deaObject.links.find(link => link.key === "Start")){
+            alert("Bitte füge ein StartLink hinzu");
+            return;
+       } 
     const randomGeneratedArray = game[this.activeLevel].randomWords();
     const referenzautomat = game[this.activeLevel].solution;
 

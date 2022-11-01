@@ -18,11 +18,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { AuthGuard } from './auth.guard';
 import { StoreModule } from '@ngrx/store';
-import { counterReducer } from './counter.reducer';
+import { counterReducer, levelReducer } from './counter.reducer';
 import { GojsAngularModule } from "gojs-angular";
-
-
-
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { ProfileComponent } from './profile/profile.component'; // Angular CLI environment
@@ -32,8 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PuzzleComponent } from './puzzle/puzzle.component';
 import { PuzzleModule } from './puzzle/puzzle.module';
 import { DialogDataExampleDialog, PuzzleGameComponent } from './puzzle-game/puzzle-game.component';
-import { ExampleComponent } from './example/example.component';
-import { CommonModule } from '@angular/common';  
+import { CommonModule } from '@angular/common';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -50,13 +46,14 @@ function initializeKeycloak(keycloak: KeycloakService) {
         redirectUri: 'http://localhost:4200/your_url',
         // this will solved the error
         checkLoginIframe: false
-      }});
-    }
+      }
+    });
+}
 
 
 const appRoutes: Routes = [
   { path: '', component: StartGameComponent },
-  { path: 'login', redirectTo: '/startgame'},
+  { path: 'login', redirectTo: '/startgame' },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'docu', component: MainPageComponent },
@@ -64,18 +61,12 @@ const appRoutes: Routes = [
   {
     path: 'home',
     component: StartGameComponent,
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'startgame',
     component: PuzzleGameComponent,
-    canActivate:[AuthGuard]
-  },
-
-  {
-    path: 'test',
-    component: DeaComponent,
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
 
   { path: '**', component: StartGameComponent },
@@ -89,11 +80,10 @@ const appRoutes: Routes = [
     FooterComponent,
     MainPageComponent,
     LoginComponent,
-    RegisterComponent,
+    //RegisterComponent,
     DialogComponent,
     ProfileComponent,
     PuzzleGameComponent,
-    ExampleComponent,
   ],
   imports: [
     BrowserModule,
@@ -110,10 +100,10 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     ),
     BrowserAnimationsModule,
-    StoreModule.forRoot({ count: counterReducer }),
+    StoreModule.forRoot({ count: counterReducer, level: levelReducer }),
     StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      logOnly: environment.production, // Restrict extension to log-only mode
+      maxAge: 12,
+      logOnly: environment.production,
     }),
     GojsAngularModule,
 
@@ -128,4 +118,4 @@ const appRoutes: Routes = [
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
