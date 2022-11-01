@@ -73,9 +73,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                                 <a href="components/DialogComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >DialogComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/DialogDataExampleDialog.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >DialogDataExampleDialog</a>
-                                            </li>
-                                            <li class="link">
                                                 <a href="components/FooterComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FooterComponent</a>
                                             </li>
                                             <li class="link">
@@ -104,40 +101,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="modules/AuthModule.html" data-type="entity-link" >AuthModule</a>
-                            </li>
-                            <li class="link">
-                                <a href="modules/DeaModule.html" data-type="entity-link" >DeaModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-DeaModule-e5cd1f8a6753c72d970a9e8d9a8d23eaedc229d9d9b14af171f1df0fb95fb1e285d7dc1b2c4024377ed1683fed6bba7ceb04f3a9ef890c6089cc07e4f663dc35"' : 'data-target="#xs-components-links-module-DeaModule-e5cd1f8a6753c72d970a9e8d9a8d23eaedc229d9d9b14af171f1df0fb95fb1e285d7dc1b2c4024377ed1683fed6bba7ceb04f3a9ef890c6089cc07e4f663dc35"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-DeaModule-e5cd1f8a6753c72d970a9e8d9a8d23eaedc229d9d9b14af171f1df0fb95fb1e285d7dc1b2c4024377ed1683fed6bba7ceb04f3a9ef890c6089cc07e4f663dc35"' :
-                                            'id="xs-components-links-module-DeaModule-e5cd1f8a6753c72d970a9e8d9a8d23eaedc229d9d9b14af171f1df0fb95fb1e285d7dc1b2c4024377ed1683fed6bba7ceb04f3a9ef890c6089cc07e4f663dc35"' }>
-                                            <li class="link">
-                                                <a href="components/CytoGraphComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >CytoGraphComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/DeaComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >DeaComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                <li class="chapter inner">
-                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-DeaModule-e5cd1f8a6753c72d970a9e8d9a8d23eaedc229d9d9b14af171f1df0fb95fb1e285d7dc1b2c4024377ed1683fed6bba7ceb04f3a9ef890c6089cc07e4f663dc35"' : 'data-target="#xs-injectables-links-module-DeaModule-e5cd1f8a6753c72d970a9e8d9a8d23eaedc229d9d9b14af171f1df0fb95fb1e285d7dc1b2c4024377ed1683fed6bba7ceb04f3a9ef890c6089cc07e4f663dc35"' }>
-                                        <span class="icon ion-md-arrow-round-down"></span>
-                                        <span>Injectables</span>
-                                        <span class="icon ion-ios-arrow-down"></span>
-                                    </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-DeaModule-e5cd1f8a6753c72d970a9e8d9a8d23eaedc229d9d9b14af171f1df0fb95fb1e285d7dc1b2c4024377ed1683fed6bba7ceb04f3a9ef890c6089cc07e4f663dc35"' :
-                                        'id="xs-injectables-links-module-DeaModule-e5cd1f8a6753c72d970a9e8d9a8d23eaedc229d9d9b14af171f1df0fb95fb1e285d7dc1b2c4024377ed1683fed6bba7ceb04f3a9ef890c6089cc07e4f663dc35"' }>
-                                        <li class="link">
-                                            <a href="injectables/DeaService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >DeaService</a>
-                                        </li>
-                                    </ul>
-                                </li>
                             </li>
                             <li class="link">
                                 <a href="modules/PuzzleModule.html" data-type="entity-link" >PuzzleModule</a>
@@ -237,9 +200,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
                                 <li class="link">
                                     <a href="injectables/AuthGuard.html" data-type="entity-link" >AuthGuard</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/CytoGraphService.html" data-type="entity-link" >CytoGraphService</a>
                                 </li>
                             </ul>
                         </li>
