@@ -1,6 +1,5 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './component/footer/footer.component';
@@ -8,7 +7,6 @@ import { NavigationComponent } from './component/navigation/navigation.component
 import { MainPageComponent } from './component/main-page/main-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './component/login/login.component';
-import { RegisterComponent } from './component/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { DialogComponent } from './shared/dialog/dialog.component';
@@ -50,7 +48,6 @@ function initializeKeycloak(keycloak: KeycloakService) {
 const appRoutes: Routes = [
   { path: '', component: StartGameComponent },
   { path: 'login', redirectTo: '/startgame' },
-  { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'docu', component: MainPageComponent },
 
@@ -76,7 +73,6 @@ const appRoutes: Routes = [
     FooterComponent,
     MainPageComponent,
     LoginComponent,
-    //RegisterComponent,
     DialogComponent,
     ProfileComponent,
     PuzzleGameComponent,
@@ -86,13 +82,13 @@ const appRoutes: Routes = [
     AppRoutingModule,
     MatButtonModule,
     CommonModule,
-    //DeaModule,
+    StartGameModule,
     MatDialogModule,
     HttpClientModule,
     KeycloakAngularModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: true } 
     ),
     BrowserAnimationsModule,
     StoreModule.forRoot({ count: counterReducer, level: levelReducer }),

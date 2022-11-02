@@ -116,7 +116,7 @@ export const game = {
     points: 20
   },
   3: {
-    task: 'Stellen Sie die nachfolgenden Sprache als deterministische endliche Automaten dar \n L = {w | w ∈ {0,1}∗ und w entha ̈lt das Teilwort 110}',
+    task: 'Stellen Sie die nachfolgenden Sprache als deterministische endliche Automaten dar \n L = {w | w ∈ {0,1}∗ und w enthaelt das Teilwort 110}',
     nodes: [
       { id: 0, text: "A" },
       { id: 1, text: "B" },
@@ -181,7 +181,7 @@ export const game = {
     points: 20
   },
   4: {
-    task: 'Stellen Sie die nachfolgenden Sprache als deterministische endliche Automaten dar L = {w | w ∈ {0,1}}∗ und w hat eine Länge von maximal 2',
+    task: 'Stellen Sie die nachfolgenden Sprache als deterministischen endlichen Automaten dar L = {w | w ∈ {0,1}}∗ und w hat eine Länge von maximal 2',
     nodes: [
       { id: 0, text: "A", },
       { id: 1, text: "B", },
@@ -252,7 +252,7 @@ export const game = {
     points: 20
   },
   6: {
-    task: '̈Gegeben sei die Sprache L1 = {w ∈ {0} * : |w| ≥ 2 }. Geben Sie einen deterministischen endlichen Automaten in Graphdarstellung an, der L1 erkennt',
+    task: '̈Gegeben sei die Sprache L = {w ∈ {0} * : |w| ≥ 2 }. Geben Sie einen deterministischen endlichen Automaten in Graphdarstellung an, der L erkennt',
     nodes: [
       { id: 0, text: "A"},
       { id: 1, text: "B" },
@@ -285,7 +285,7 @@ export const game = {
     points: 20
   },
   7: {
-    task: '̈Gegeben sei die Sprache L1 = {w ∈ {0} * : |w| ≤ 2 }. Geben Sie einen deterministischen endlichen Automaten in Graphdarstellung an, der L1 erkennt',
+    task: '̈Gegeben sei die Sprache L = {w ∈ {0} * : |w| ≤ 2 }. Geben Sie einen deterministischen endlichen Automaten in Graphdarstellung an, der L erkennt',
     nodes: [
       { id: 0, text: "A", figure: 'Ring'},
       { id: 1, text: "B", figure: 'Ring'},

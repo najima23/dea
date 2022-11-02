@@ -200,7 +200,7 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>createReducer(
   initialState,
-  on(increment, (_state, action) &#x3D;&gt; { return action.user }),
+  on(user, (_state, action) &#x3D;&gt; { return action.user }),
 )</code>
                     </td>
                 </tr>
@@ -736,7 +736,7 @@
     points: 20
   },
   3: {
-    task: &#x27;Stellen Sie die nachfolgenden Sprache als deterministische endliche Automaten dar \n L &#x3D; {w | w ∈ {0,1}∗ und w entha ̈lt das Teilwort 110}&#x27;,
+    task: &#x27;Stellen Sie die nachfolgenden Sprache als deterministische endliche Automaten dar \n L &#x3D; {w | w ∈ {0,1}∗ und w enthaelt das Teilwort 110}&#x27;,
     nodes: [
       { id: 0, text: &quot;A&quot; },
       { id: 1, text: &quot;B&quot; },
@@ -801,7 +801,7 @@
     points: 20
   },
   4: {
-    task: &#x27;Stellen Sie die nachfolgenden Sprache als deterministische endliche Automaten dar L &#x3D; {w | w ∈ {0,1}}∗ und w hat eine Länge von maximal 2&#x27;,
+    task: &#x27;Stellen Sie die nachfolgenden Sprache als deterministischen endlichen Automaten dar L &#x3D; {w | w ∈ {0,1}}∗ und w hat eine Länge von maximal 2&#x27;,
     nodes: [
       { id: 0, text: &quot;A&quot;, },
       { id: 1, text: &quot;B&quot;, },
@@ -872,7 +872,7 @@
     points: 20
   },
   6: {
-    task: &#x27;̈Gegeben sei die Sprache L1 &#x3D; {w ∈ {0} * : |w| ≥ 2 }. Geben Sie einen deterministischen endlichen Automaten in Graphdarstellung an, der L1 erkennt&#x27;,
+    task: &#x27;̈Gegeben sei die Sprache L &#x3D; {w ∈ {0} * : |w| ≥ 2 }. Geben Sie einen deterministischen endlichen Automaten in Graphdarstellung an, der L erkennt&#x27;,
     nodes: [
       { id: 0, text: &quot;A&quot;},
       { id: 1, text: &quot;B&quot; },
@@ -905,7 +905,7 @@
     points: 20
   },
   7: {
-    task: &#x27;̈Gegeben sei die Sprache L1 &#x3D; {w ∈ {0} * : |w| ≤ 2 }. Geben Sie einen deterministischen endlichen Automaten in Graphdarstellung an, der L1 erkennt&#x27;,
+    task: &#x27;̈Gegeben sei die Sprache L &#x3D; {w ∈ {0} * : |w| ≤ 2 }. Geben Sie einen deterministischen endlichen Automaten in Graphdarstellung an, der L erkennt&#x27;,
     nodes: [
       { id: 0, text: &quot;A&quot;, figure: &#x27;Ring&#x27;},
       { id: 1, text: &quot;B&quot;, figure: &#x27;Ring&#x27;},
@@ -1036,7 +1036,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>createAction(&#x27;[general] userLevel&#x27;, props&lt;{level: string;}&gt;())</code>
+                        <i>Default value : </i><code>createAction(&#x27;[general] userLevel&#x27;, props&lt;{ level: string; }&gt;())</code>
                     </td>
                 </tr>
 

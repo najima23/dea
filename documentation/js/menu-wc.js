@@ -90,17 +90,11 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                             <li class="link">
                                                 <a href="components/PuzzleGameComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PuzzleGameComponent</a>
                                             </li>
-                                            <li class="link">
-                                                <a href="components/RegisterComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RegisterComponent</a>
-                                            </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
                                 <a href="modules/AppRoutingModule.html" data-type="entity-link" >AppRoutingModule</a>
-                            </li>
-                            <li class="link">
-                                <a href="modules/AuthModule.html" data-type="entity-link" >AuthModule</a>
                             </li>
                             <li class="link">
                                 <a href="modules/StartGameModule.html" data-type="entity-link" >StartGameModule</a>
@@ -138,19 +132,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                 </ul>
                 </li>
-                    <li class="chapter">
-                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#components-links"' :
-                            'data-target="#xs-components-links"' }>
-                            <span class="icon ion-md-cog"></span>
-                            <span>Components</span>
-                            <span class="icon ion-ios-arrow-down"></span>
-                        </div>
-                        <ul class="links collapse " ${ isNormalMode ? 'id="components-links"' : 'id="xs-components-links"' }>
-                            <li class="link">
-                                <a href="components/MyCounterComponent.html" data-type="entity-link" >MyCounterComponent</a>
-                            </li>
-                        </ul>
-                    </li>
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#classes-links"' :
                             'data-target="#xs-classes-links"' }>

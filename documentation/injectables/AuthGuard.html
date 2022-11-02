@@ -274,7 +274,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Observable } from &#x27;rxjs&#x27;;
 import { KeycloakAuthGuard, KeycloakService } from &#x27;keycloak-angular&#x27;;
 import { Store } from &#x27;@ngrx/store&#x27;;
-import { increment } from &#x27;./counter.actions&#x27;;
+import { user } from &#x27;./counter.actions&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;
@@ -298,8 +298,8 @@ export class AuthGuard extends KeycloakAuthGuard {
       await this.keycloak.login({
         redirectUri: window.location.origin + state.url
       });
-    }else{
-      this.store.dispatch(increment({ user: await this.keycloak.loadUserProfile() }));
+    } else {
+      this.store.dispatch(user({ user: await this.keycloak.loadUserProfile() }));
 
 
     }
