@@ -294,7 +294,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
 import { Store } from &#x27;@ngrx/store&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
 
@@ -311,16 +311,12 @@ interface User{
   templateUrl: &#x27;./navigation.component.html&#x27;,
   styleUrls: [&#x27;./navigation.component.css&#x27;]
 })
-export class NavigationComponent implements OnInit {
-  count$: Observable&lt;User&gt;;
+export class NavigationComponent  {
+  currentUser$: Observable&lt;User&gt;;
 
-  constructor(private store: Store&lt;{ count: User }&gt;) {
-    this.count$ &#x3D; this.store.select(&#x27;count&#x27;);
+  constructor(private store: Store&lt;{ user: User }&gt;) {
+    this.currentUser$ &#x3D; this.store.select(&#x27;user&#x27;);
   }
-
-  ngOnInit(): void {
-  }
-
 }
 </code></pre>
     </div>

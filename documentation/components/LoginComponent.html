@@ -70,12 +70,6 @@
 
 
 
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-    </p>
 
 
 <section>
@@ -121,33 +115,6 @@
     </table>
 </section>
 
-    <section>
-    <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
-
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-
-
-
-
-
-        </tbody>
-    </table>
-</section>
 
     <section>
     <h3 id="constructor">Constructor</h3>
@@ -172,68 +139,22 @@
 
 
 
-    <section>
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/app/component/login/login.component.ts:12</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
 
 @Component({
   selector: &#x27;app-login&#x27;,
   templateUrl: &#x27;./login.component.html&#x27;,
   styleUrls: [&#x27;./login.component.css&#x27;]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
 </code></pre>
     </div>
@@ -315,7 +236,7 @@ export class LoginComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><section class="hero is-primary is-fullheight">    <div class="hero-body">      <div class="container">        <div class="columns is-centered">          <div class="column is-5-tablet is-4-desktop is-3-widescreen">            <form action="" class="box">              <div class="field">                <label for="" class="label">Email</label>                <div class="control has-icons-left">                  <input type="email" placeholder="e.g. bobsmith@gmail.com" class="input" required>                  <span class="icon is-small is-left">                    <i class="fa fa-envelope"></i>                  </span>                </div>              </div>              <div class="field">                <label for="" class="label">Password</label>                <div class="control has-icons-left">                  <input type="password" placeholder="*******" class="input" required>                  <span class="icon is-small is-left">                    <i class="fa fa-lock"></i>                  </span>                </div>              </div>              <div class="field">                <label for="" class="checkbox">                  <input type="checkbox">                 Remember me                </label>              </div>              <div class="field">                <button class="button is-success">                  Login                </button>              </div>            </form>          </div>        </div>      </div>    </div>  </section></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DialogComponent', 'selector': 'app-dialog'},{'name': 'DialogDataExampleDialog', 'selector': 'dialog-data-example-dialog'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainPageComponent', 'selector': 'app-main-page'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'PuzzleGameComponent', 'selector': 'app-puzzle-game'},{'name': 'StartGameComponent', 'selector': 'app-start-game'},{'name': 'TableComponent', 'selector': 'app-table'}];
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DialogDataComponent', 'selector': 'app-dialog-data-example-dialog'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'PuzzleGameComponent', 'selector': 'app-puzzle-game'},{'name': 'StartGameComponent', 'selector': 'app-start-game'},{'name': 'TableComponent', 'selector': 'app-table'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LoginComponent'};
 </script>

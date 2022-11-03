@@ -70,12 +70,6 @@
 
 
 
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-    </p>
 
 
 <section>
@@ -140,20 +134,6 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
 
 
@@ -216,49 +196,7 @@
 
 
 
-    <section>
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/app/profile/profile.component.ts:25</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
     <section>
     
     <h3 id="inputs">
@@ -313,16 +251,12 @@ interface User{
   templateUrl: &#x27;./profile.component.html&#x27;,
   styleUrls: [&#x27;./profile.component.css&#x27;]
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
   count$: Observable&lt;User&gt;;
 
   constructor(private store: Store&lt;{ count: User }&gt;) {
     this.count$ &#x3D; this.store.select(&#x27;count&#x27;);
   }
-
-  ngOnInit(): void {
-  }
-
 }
 </code></pre>
     </div>
@@ -424,7 +358,7 @@ export class ProfileComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="container is-max-desktop">  <div class="field">    <label class="label">Username</label>    <div class="control">      <input        class="input"        type="text"        placeholder="Text input"        value="{{ (count$ | async)!.username }}"        readonly      />    </div>  </div>  <div class="field">    <label class="label">Vorname</label>    <div class="control">      <input        class="input"        type="text"        placeholder="Text input"        value="{{ (count$ | async)!.firstName }}"        readonly      />    </div>  </div>  <div class="field">    <label class="label">Name</label>    <div class="control">      <input        class="input"        type="text"        placeholder="Text input"        value="{{ (count$ | async)!.lastName }}"        readonly      />    </div>  </div>  <div class="field">    <label class="label">Email</label>    <div class="control">      <input        class="input"        type="text"        placeholder="Text input"        value="{{ (count$ | async)!.email }}"        readonly      />    </div>  </div>  <a    class="button is-large"    href="http://localhost:8080/auth/realms/master/account/#/personal-info"  >    Edit-Profile</a  ></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DialogComponent', 'selector': 'app-dialog'},{'name': 'DialogDataExampleDialog', 'selector': 'dialog-data-example-dialog'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainPageComponent', 'selector': 'app-main-page'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'PuzzleGameComponent', 'selector': 'app-puzzle-game'},{'name': 'StartGameComponent', 'selector': 'app-start-game'},{'name': 'TableComponent', 'selector': 'app-table'}];
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DialogDataComponent', 'selector': 'app-dialog-data-example-dialog'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'PuzzleGameComponent', 'selector': 'app-puzzle-game'},{'name': 'StartGameComponent', 'selector': 'app-start-game'},{'name': 'TableComponent', 'selector': 'app-table'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ProfileComponent'};
 </script>

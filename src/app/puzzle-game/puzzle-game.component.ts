@@ -6,8 +6,8 @@ import produce from "immer";
 import { game } from "./level";
 import { DeaArray, WordGenerator } from './word-generator';
 import { WordChecker } from './word-checker';
-import { Inject} from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 
@@ -33,10 +33,10 @@ class DemoForceDirectedLayout extends go.ForceDirectedLayout {
   encapsulation: ViewEncapsulation.None
 })
 export class PuzzleGameComponent implements OnChanges {
-  public diagramDivClassName: string = 'gojs-wrapper';
+  public diagramDivClassName = 'gojs-wrapper';
   public paletteDivClassName = 'gojs-palette';
   public game = game;
-  public activeLevel = parseInt(localStorage.getItem('activeLevel')!)  || 0; 
+  public activeLevel = parseInt(localStorage.getItem('activeLevel')!) || 0;
   public highestLevel = parseInt(localStorage.getItem('highestLevel')!) || 0;
   public score = parseInt(localStorage.getItem('score')!) || 0;
 
@@ -56,17 +56,17 @@ export class PuzzleGameComponent implements OnChanges {
 
   constructor(private cdr: ChangeDetectorRef, public dialog: MatDialog) { }
 
-  
+
   openDialog(check, word) {
-    const dialogRef = this.dialog.open(DialogDataExampleDialog, {
+    const dialogRef = this.dialog.open(DialogDataComponent, {
       width: '250px',
-      position:  {
+      position: {
         bottom: "200px",
         right: "100"
-       },
+      },
       data: {
         winState: check,
-        onNext : this.loadNextLevel.bind(this),
+        onNext: this.loadNextLevel.bind(this),
         word,
       },
     });
@@ -83,7 +83,7 @@ export class PuzzleGameComponent implements OnChanges {
     }
   }
 
-  
+
   public ngAfterViewInit() {
     if (this.observedDiagram) return;
     this.observedDiagram = this.myDiagramComponent?.diagram;
@@ -231,24 +231,24 @@ export class PuzzleGameComponent implements OnChanges {
       margin: 2, font: "bold 16px sans-serif"
     }, new go.Binding("text", "internal")), $(go.TextBlock, { margin: 2, font: " 11px sans-serif" }, new go.Binding("text", "key")),);
 
-    palette.linkTemplate = $(go.Link, 
+    palette.linkTemplate = $(go.Link,
       {
-      height: 120, selectionAdornmentTemplate: $(go.Adornment, "Link", $(go.Shape, {
-        isPanelMain: true, fill: null, stroke: "deepskyblue", strokeWidth: 0
-      }), $(go.Shape,  // the arrowhead
-        { toArrow: "Standard", stroke: null }))
-    },
-     {
-      routing: go.Link.AvoidsNodes, curve: go.Link.JumpOver, corner: 5, toShortLength: 4
-    }, new go.Binding("points"), $(go.Shape,  // the link path shape
-      { isPanelMain: true, strokeWidth: 2 }), $(go.Shape,  // the arrowhead
-        { toArrow: "Standard", stroke: null }), $(go.TextBlock, {
-          margin: 4, background: 'white'
-        }, new go.Binding("text", "key"))),
+        height: 120, selectionAdornmentTemplate: $(go.Adornment, "Link", $(go.Shape, {
+          isPanelMain: true, fill: null, stroke: "deepskyblue", strokeWidth: 0
+        }), $(go.Shape,  // the arrowhead
+          { toArrow: "Standard", stroke: null }))
+      },
+      {
+        routing: go.Link.AvoidsNodes, curve: go.Link.JumpOver, corner: 5, toShortLength: 4
+      }, new go.Binding("points"), $(go.Shape,  // the link path shape
+        { isPanelMain: true, strokeWidth: 2 }), $(go.Shape,  // the arrowhead
+          { toArrow: "Standard", stroke: null }), $(go.TextBlock, {
+            margin: 4, background: 'white'
+          }, new go.Binding("text", "key"))),
 
       palette.model = new go.GraphLinksModel([  // specify the contents of the Palette
-        { key: "Ende", color: "white", internal: "", stroke: "black", figure: 'Ring' }, 
-        {key: "Knoten", color: "white", internal: "", stroke: "black"},
+        { key: "Ende", color: "white", internal: "", stroke: "black", figure: 'Ring' },
+        { key: "Knoten", color: "white", internal: "", stroke: "black" },
       ], [// the Palette also has a disconnected Link, which the user can drag-and-drop
         { key: 'Start', points: new go.List().addAll([new go.Point(10, 0), new go.Point(70, 0)]) },
 
@@ -286,7 +286,7 @@ export class PuzzleGameComponent implements OnChanges {
   }
 
   loadDiagram(value: number) {
-    if(value <= this.highestLevel){
+    if (value <= this.highestLevel) {
       if (this.myDiagramComponent) {
         localStorage.setItem('activeLevel', value.toString());
         this.activeLevel = value;
@@ -303,6 +303,7 @@ export class PuzzleGameComponent implements OnChanges {
   }
 
   validateDiagram() {
+
     const wordGenerator = new WordGenerator();
     /*const deaObject: DeaArray = {
       nodes: this.state.diagramNodeData,
@@ -315,7 +316,7 @@ export class PuzzleGameComponent implements OnChanges {
     //console.log("validate data", this.state);
   }
   checkDea() {
-  
+
 
     if (this.activeLevel === 0) {
       this.openDialog(true, "");
@@ -328,32 +329,32 @@ export class PuzzleGameComponent implements OnChanges {
       links: this.state.diagramLinkData
     }
 
-     if(!deaObject.links.find(link => link.key === "Start")){
-            alert("Bitte füge ein StartLink hinzu");
-            return;
-       } 
+    if (!deaObject.links.find(link => link.key === "Start")) {
+      alert("Bitte füge ein StartLink hinzu");
+      return;
+    }
     const randomGeneratedArray = game[this.activeLevel].randomWords();
     const referenzautomat = game[this.activeLevel].solution;
 
 
     let isCorrect = true;
     let word;
-    
+
     for (let i = 0; i < randomGeneratedArray.length; i++) {
       try {
-      const referenzCheck = wordChecker.checkBeginning(referenzautomat, randomGeneratedArray[i]);
-      const check = wordChecker.checkBeginning(deaObject, randomGeneratedArray[i]);
-      isCorrect = (check.value === referenzCheck.value);
-      word = {word: randomGeneratedArray[i], index:check.index, vergleich: { yourGraph: check.value, referenzGraph: referenzCheck.value}};
+        const referenzCheck = wordChecker.checkBeginning(referenzautomat, randomGeneratedArray[i]);
+        const check = wordChecker.checkBeginning(deaObject, randomGeneratedArray[i]);
+        isCorrect = (check.value === referenzCheck.value);
+        word = { word: randomGeneratedArray[i], index: check.index, vergleich: { yourGraph: check.value, referenzGraph: referenzCheck.value } };
 
-      if(!isCorrect) {
-        //console.log("isWrong",isCorrect);
-        break;
+        if (!isCorrect) {
+          //console.log("isWrong",isCorrect);
+          break;
+        }
+      } catch (e: any) {
+        alert(e.message);
+        return;
       }
-    } catch (e: any) {
-      alert(e.message);
-      return;
-    }
 
     }
     //score+= game[this.activeLevel].points;
@@ -368,10 +369,10 @@ export class PuzzleGameComponent implements OnChanges {
       this.activeLevel = 1;
       localStorage.setItem('activeLevel', "1");
 
-      if(this.activeLevel > this.highestLevel){
+      if (this.activeLevel > this.highestLevel) {
         localStorage.setItem('highestLevel', this.activeLevel.toString());
         this.highestLevel = this.activeLevel;
-        this.score = game.levels.filter(a => a < this.highestLevel).reduce((acc, next) => acc + game[next].points ,0)
+        this.score = game.levels.filter(a => a < this.highestLevel).reduce((acc, next) => acc + game[next].points, 0)
       }
       this.nextDiagram(this.activeLevel);
       return;
@@ -400,12 +401,12 @@ export class PuzzleGameComponent implements OnChanges {
     //alert(`Du wirst zum nächsten Level geleitet`);
     this.activeLevel += 1;
     localStorage.setItem('activeLevel', this.activeLevel.toString());
-    if(this.activeLevel > this.highestLevel){
+    if (this.activeLevel > this.highestLevel) {
       localStorage.setItem('highestLevel', this.activeLevel.toString());
       this.highestLevel = this.activeLevel;
-      this.score = game.levels.filter(a => a < this.highestLevel).reduce((acc, next) => acc + game[next].points ,0)
+      this.score = game.levels.filter(a => a < this.highestLevel).reduce((acc, next) => acc + game[next].points, 0)
     }
-    this.nextDiagram(this.activeLevel, );
+    this.nextDiagram(this.activeLevel,);
 
   }
 
@@ -414,14 +415,14 @@ export class PuzzleGameComponent implements OnChanges {
     if (confirm('Bist du dir sicher, dass du alle Level und deinen Punktestand zurücksetzen möchtest?')) {
       localStorage.setItem('activeLevel', "0");
       this.activeLevel = 0;
-  
-      localStorage.setItem('highestLevel',"0");
+
+      localStorage.setItem('highestLevel', "0");
       this.highestLevel = 0;
-  
-     localStorage.setItem('score', "0");
-     this.score = 0;
+
+      localStorage.setItem('score', "0");
+      this.score = 0;
     } else {
-      
+
     }
 
 
@@ -433,22 +434,22 @@ export interface DialogData {
   onNext: () => void;
   word: {
     word: string;
-    vergleich:{
+    vergleich: {
       yourGraph: boolean;
       referenzGraph: boolean;
-    }  ,index?: number;
+    }, index?: number;
 
 
   };
 }
 
 @Component({
-  selector: 'dialog-data-example-dialog',
-  templateUrl: 'dialog-data-example-dialog.html',
+  selector: 'app-dialog-data-example-dialog',
+  templateUrl: 'dialog-evaluation.html',
 })
-export class DialogDataExampleDialog {
-  constructor(  public dialogRef: MatDialogRef<DialogDataExampleDialog>,
-        @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+export class DialogDataComponent {
+  constructor(public dialogRef: MatDialogRef<DialogDataComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   onNoClick(): void {
     this.dialogRef.close();

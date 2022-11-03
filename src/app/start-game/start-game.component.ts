@@ -22,8 +22,8 @@ export class StartGameComponent implements OnInit {
 
   constructor(
     private usersService: UsersService,
-    private store: Store<{ count: User, level: any }> ){
-    this.currentUser = this.store.select('count') as Observable<User>;
+    private store: Store<{ user: User, level: any }> ){
+    this.currentUser = this.store.select('user') as Observable<User>;
     this.level = this.store.select('level') as Observable<any>;
 
   }

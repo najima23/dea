@@ -130,7 +130,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>generateRandomWord(arr)</code>
+<code>generateRandomWord(wordsArray)</code>
                 </td>
             </tr>
 
@@ -158,7 +158,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>arr</td>
+                                    <td>wordsArray</td>
 
                                     <td>
                                         No
@@ -202,8 +202,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="79"
-                            class="link-to-prism">src/app/puzzle-game/word-generator.ts:79</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/app/puzzle-game/word-generator.ts:76</a></div>
                 </td>
             </tr>
 
@@ -568,13 +568,10 @@ export class WordGenerator {
         return result;
     }
 
-     generateRandomWord(arr) {
+     generateRandomWord(wordsArray) {
          const length &#x3D; Math.floor(Math.random() * 25);
-         //console.log(length);
-         return Array
-         .from({ length },() &#x3D;&gt; arr[Math.floor(Math.random() * arr.length)])
-         .join(&quot;&quot;);
-}             
+         return Array.from({ length },() &#x3D;&gt; wordsArray[Math.floor(Math.random() * wordsArray.length)]).join(&quot;&quot;);
+    }             
     
 
       generateRandomWords(arr): string[] {

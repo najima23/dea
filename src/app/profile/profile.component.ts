@@ -15,14 +15,10 @@ interface User{
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
   count$: Observable<User>;
 
   constructor(private store: Store<{ count: User }>) {
     this.count$ = this.store.select('count');
   }
-
-  ngOnInit(): void {
-  }
-
 }

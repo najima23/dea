@@ -3,7 +3,7 @@ import { user } from './counter.actions';
 
 export const initialState = 0;
 
-export const counterReducer = createReducer(
+export const userReducer = createReducer(
   initialState,
   on(user, (_state, action) => { return action.user }),
 );

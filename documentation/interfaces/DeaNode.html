@@ -290,13 +290,10 @@ export class WordGenerator {
         return result;
     }
 
-     generateRandomWord(arr) {
+     generateRandomWord(wordsArray) {
          const length &#x3D; Math.floor(Math.random() * 25);
-         //console.log(length);
-         return Array
-         .from({ length },() &#x3D;&gt; arr[Math.floor(Math.random() * arr.length)])
-         .join(&quot;&quot;);
-}             
+         return Array.from({ length },() &#x3D;&gt; wordsArray[Math.floor(Math.random() * wordsArray.length)]).join(&quot;&quot;);
+    }             
     
 
       generateRandomWords(arr): string[] {

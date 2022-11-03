@@ -67,13 +67,10 @@ export class WordGenerator {
         return result;
     }
 
-     generateRandomWord(arr) {
+     generateRandomWord(wordsArray) {
          const length = Math.floor(Math.random() * 25);
-         //console.log(length);
-         return Array
-         .from({ length },() => arr[Math.floor(Math.random() * arr.length)])
-         .join("");
-}             
+         return Array.from({ length },() => wordsArray[Math.floor(Math.random() * wordsArray.length)]).join("");
+    }             
     
 
       generateRandomWords(arr): string[] {

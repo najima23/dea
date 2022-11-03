@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -15,14 +15,10 @@ interface User{
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css']
 })
-export class NavigationComponent implements OnInit {
-  count$: Observable<User>;
+export class NavigationComponent  {
+  currentUser$: Observable<User>;
 
-  constructor(private store: Store<{ count: User }>) {
-    this.count$ = this.store.select('count');
+  constructor(private store: Store<{ user: User }>) {
+    this.currentUser$ = this.store.select('user');
   }
-
-  ngOnInit(): void {
-  }
-
 }

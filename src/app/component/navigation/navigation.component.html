@@ -25,9 +25,9 @@
     </div>
 
     <div class="navbar-end">
-      <div *ngIf="(count$ | async)!.username">
+      <div *ngIf="(currentUser$ | async)!.username">
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link"> {{ (count$ | async)!.username }}</a>
+          <a class="navbar-link"> {{ (currentUser$ | async)!.username }}</a>
 
           <div class="navbar-dropdown">
             <a class="navbar-item" routerLink = 'profile' routerLinkActive = "active"> View Profile </a>
@@ -44,7 +44,7 @@
 
       </div>
     </div>
-    <div *ngIf="!(count$ | async)!.username" class="buttons">
+    <div *ngIf="!(currentUser$ | async)!.username" class="buttons">
       <a
         class="button is-light"
         routerLink="login"

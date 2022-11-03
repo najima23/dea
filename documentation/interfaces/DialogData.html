@@ -224,8 +224,8 @@ import produce from &quot;immer&quot;;
 import { game } from &quot;./level&quot;;
 import { DeaArray, WordGenerator } from &#x27;./word-generator&#x27;;
 import { WordChecker } from &#x27;./word-checker&#x27;;
-import { Inject} from &#x27;@angular/core&#x27;;
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from &#x27;@angular/material/dialog&#x27;;
+import { Inject } from &#x27;@angular/core&#x27;;
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from &#x27;@angular/material/dialog&#x27;;
 
 
 
@@ -251,10 +251,10 @@ class DemoForceDirectedLayout extends go.ForceDirectedLayout {
   encapsulation: ViewEncapsulation.None
 })
 export class PuzzleGameComponent implements OnChanges {
-  public diagramDivClassName: string &#x3D; &#x27;gojs-wrapper&#x27;;
+  public diagramDivClassName &#x3D; &#x27;gojs-wrapper&#x27;;
   public paletteDivClassName &#x3D; &#x27;gojs-palette&#x27;;
   public game &#x3D; game;
-  public activeLevel &#x3D; parseInt(localStorage.getItem(&#x27;activeLevel&#x27;)!)  || 0; 
+  public activeLevel &#x3D; parseInt(localStorage.getItem(&#x27;activeLevel&#x27;)!) || 0;
   public highestLevel &#x3D; parseInt(localStorage.getItem(&#x27;highestLevel&#x27;)!) || 0;
   public score &#x3D; parseInt(localStorage.getItem(&#x27;score&#x27;)!) || 0;
 
@@ -274,17 +274,17 @@ export class PuzzleGameComponent implements OnChanges {
 
   constructor(private cdr: ChangeDetectorRef, public dialog: MatDialog) { }
 
-  
+
   openDialog(check, word) {
-    const dialogRef &#x3D; this.dialog.open(DialogDataExampleDialog, {
+    const dialogRef &#x3D; this.dialog.open(DialogDataComponent, {
       width: &#x27;250px&#x27;,
-      position:  {
+      position: {
         bottom: &quot;200px&quot;,
         right: &quot;100&quot;
-       },
+      },
       data: {
         winState: check,
-        onNext : this.loadNextLevel.bind(this),
+        onNext: this.loadNextLevel.bind(this),
         word,
       },
     });
@@ -301,7 +301,7 @@ export class PuzzleGameComponent implements OnChanges {
     }
   }
 
-  
+
   public ngAfterViewInit() {
     if (this.observedDiagram) return;
     this.observedDiagram &#x3D; this.myDiagramComponent?.diagram;
@@ -449,24 +449,24 @@ export class PuzzleGameComponent implements OnChanges {
       margin: 2, font: &quot;bold 16px sans-serif&quot;
     }, new go.Binding(&quot;text&quot;, &quot;internal&quot;)), $(go.TextBlock, { margin: 2, font: &quot; 11px sans-serif&quot; }, new go.Binding(&quot;text&quot;, &quot;key&quot;)),);
 
-    palette.linkTemplate &#x3D; $(go.Link, 
+    palette.linkTemplate &#x3D; $(go.Link,
       {
-      height: 120, selectionAdornmentTemplate: $(go.Adornment, &quot;Link&quot;, $(go.Shape, {
-        isPanelMain: true, fill: null, stroke: &quot;deepskyblue&quot;, strokeWidth: 0
-      }), $(go.Shape,  // the arrowhead
-        { toArrow: &quot;Standard&quot;, stroke: null }))
-    },
-     {
-      routing: go.Link.AvoidsNodes, curve: go.Link.JumpOver, corner: 5, toShortLength: 4
-    }, new go.Binding(&quot;points&quot;), $(go.Shape,  // the link path shape
-      { isPanelMain: true, strokeWidth: 2 }), $(go.Shape,  // the arrowhead
-        { toArrow: &quot;Standard&quot;, stroke: null }), $(go.TextBlock, {
-          margin: 4, background: &#x27;white&#x27;
-        }, new go.Binding(&quot;text&quot;, &quot;key&quot;))),
+        height: 120, selectionAdornmentTemplate: $(go.Adornment, &quot;Link&quot;, $(go.Shape, {
+          isPanelMain: true, fill: null, stroke: &quot;deepskyblue&quot;, strokeWidth: 0
+        }), $(go.Shape,  // the arrowhead
+          { toArrow: &quot;Standard&quot;, stroke: null }))
+      },
+      {
+        routing: go.Link.AvoidsNodes, curve: go.Link.JumpOver, corner: 5, toShortLength: 4
+      }, new go.Binding(&quot;points&quot;), $(go.Shape,  // the link path shape
+        { isPanelMain: true, strokeWidth: 2 }), $(go.Shape,  // the arrowhead
+          { toArrow: &quot;Standard&quot;, stroke: null }), $(go.TextBlock, {
+            margin: 4, background: &#x27;white&#x27;
+          }, new go.Binding(&quot;text&quot;, &quot;key&quot;))),
 
       palette.model &#x3D; new go.GraphLinksModel([  // specify the contents of the Palette
-        { key: &quot;Ende&quot;, color: &quot;white&quot;, internal: &quot;&quot;, stroke: &quot;black&quot;, figure: &#x27;Ring&#x27; }, 
-        {key: &quot;Knoten&quot;, color: &quot;white&quot;, internal: &quot;&quot;, stroke: &quot;black&quot;},
+        { key: &quot;Ende&quot;, color: &quot;white&quot;, internal: &quot;&quot;, stroke: &quot;black&quot;, figure: &#x27;Ring&#x27; },
+        { key: &quot;Knoten&quot;, color: &quot;white&quot;, internal: &quot;&quot;, stroke: &quot;black&quot; },
       ], [// the Palette also has a disconnected Link, which the user can drag-and-drop
         { key: &#x27;Start&#x27;, points: new go.List().addAll([new go.Point(10, 0), new go.Point(70, 0)]) },
 
@@ -504,7 +504,7 @@ export class PuzzleGameComponent implements OnChanges {
   }
 
   loadDiagram(value: number) {
-    if(value &lt;&#x3D; this.highestLevel){
+    if (value &lt;&#x3D; this.highestLevel) {
       if (this.myDiagramComponent) {
         localStorage.setItem(&#x27;activeLevel&#x27;, value.toString());
         this.activeLevel &#x3D; value;
@@ -521,6 +521,7 @@ export class PuzzleGameComponent implements OnChanges {
   }
 
   validateDiagram() {
+
     const wordGenerator &#x3D; new WordGenerator();
     /*const deaObject: DeaArray &#x3D; {
       nodes: this.state.diagramNodeData,
@@ -533,7 +534,7 @@ export class PuzzleGameComponent implements OnChanges {
     //console.log(&quot;validate data&quot;, this.state);
   }
   checkDea() {
-  
+
 
     if (this.activeLevel &#x3D;&#x3D;&#x3D; 0) {
       this.openDialog(true, &quot;&quot;);
@@ -546,32 +547,32 @@ export class PuzzleGameComponent implements OnChanges {
       links: this.state.diagramLinkData
     }
 
-     if(!deaObject.links.find(link &#x3D;&gt; link.key &#x3D;&#x3D;&#x3D; &quot;Start&quot;)){
-            alert(&quot;Bitte füge ein StartLink hinzu&quot;);
-            return;
-       } 
+    if (!deaObject.links.find(link &#x3D;&gt; link.key &#x3D;&#x3D;&#x3D; &quot;Start&quot;)) {
+      alert(&quot;Bitte füge ein StartLink hinzu&quot;);
+      return;
+    }
     const randomGeneratedArray &#x3D; game[this.activeLevel].randomWords();
     const referenzautomat &#x3D; game[this.activeLevel].solution;
 
 
     let isCorrect &#x3D; true;
     let word;
-    
+
     for (let i &#x3D; 0; i &lt; randomGeneratedArray.length; i++) {
       try {
-      const referenzCheck &#x3D; wordChecker.checkBeginning(referenzautomat, randomGeneratedArray[i]);
-      const check &#x3D; wordChecker.checkBeginning(deaObject, randomGeneratedArray[i]);
-      isCorrect &#x3D; (check.value &#x3D;&#x3D;&#x3D; referenzCheck.value);
-      word &#x3D; {word: randomGeneratedArray[i], index:check.index, vergleich: { yourGraph: check.value, referenzGraph: referenzCheck.value}};
+        const referenzCheck &#x3D; wordChecker.checkBeginning(referenzautomat, randomGeneratedArray[i]);
+        const check &#x3D; wordChecker.checkBeginning(deaObject, randomGeneratedArray[i]);
+        isCorrect &#x3D; (check.value &#x3D;&#x3D;&#x3D; referenzCheck.value);
+        word &#x3D; { word: randomGeneratedArray[i], index: check.index, vergleich: { yourGraph: check.value, referenzGraph: referenzCheck.value } };
 
-      if(!isCorrect) {
-        //console.log(&quot;isWrong&quot;,isCorrect);
-        break;
+        if (!isCorrect) {
+          //console.log(&quot;isWrong&quot;,isCorrect);
+          break;
+        }
+      } catch (e: any) {
+        alert(e.message);
+        return;
       }
-    } catch (e: any) {
-      alert(e.message);
-      return;
-    }
 
     }
     //score+&#x3D; game[this.activeLevel].points;
@@ -586,10 +587,10 @@ export class PuzzleGameComponent implements OnChanges {
       this.activeLevel &#x3D; 1;
       localStorage.setItem(&#x27;activeLevel&#x27;, &quot;1&quot;);
 
-      if(this.activeLevel &gt; this.highestLevel){
+      if (this.activeLevel &gt; this.highestLevel) {
         localStorage.setItem(&#x27;highestLevel&#x27;, this.activeLevel.toString());
         this.highestLevel &#x3D; this.activeLevel;
-        this.score &#x3D; game.levels.filter(a &#x3D;&gt; a &lt; this.highestLevel).reduce((acc, next) &#x3D;&gt; acc + game[next].points ,0)
+        this.score &#x3D; game.levels.filter(a &#x3D;&gt; a &lt; this.highestLevel).reduce((acc, next) &#x3D;&gt; acc + game[next].points, 0)
       }
       this.nextDiagram(this.activeLevel);
       return;
@@ -618,12 +619,12 @@ export class PuzzleGameComponent implements OnChanges {
     //alert(&#x60;Du wirst zum nächsten Level geleitet&#x60;);
     this.activeLevel +&#x3D; 1;
     localStorage.setItem(&#x27;activeLevel&#x27;, this.activeLevel.toString());
-    if(this.activeLevel &gt; this.highestLevel){
+    if (this.activeLevel &gt; this.highestLevel) {
       localStorage.setItem(&#x27;highestLevel&#x27;, this.activeLevel.toString());
       this.highestLevel &#x3D; this.activeLevel;
-      this.score &#x3D; game.levels.filter(a &#x3D;&gt; a &lt; this.highestLevel).reduce((acc, next) &#x3D;&gt; acc + game[next].points ,0)
+      this.score &#x3D; game.levels.filter(a &#x3D;&gt; a &lt; this.highestLevel).reduce((acc, next) &#x3D;&gt; acc + game[next].points, 0)
     }
-    this.nextDiagram(this.activeLevel, );
+    this.nextDiagram(this.activeLevel,);
 
   }
 
@@ -632,14 +633,14 @@ export class PuzzleGameComponent implements OnChanges {
     if (confirm(&#x27;Bist du dir sicher, dass du alle Level und deinen Punktestand zurücksetzen möchtest?&#x27;)) {
       localStorage.setItem(&#x27;activeLevel&#x27;, &quot;0&quot;);
       this.activeLevel &#x3D; 0;
-  
-      localStorage.setItem(&#x27;highestLevel&#x27;,&quot;0&quot;);
+
+      localStorage.setItem(&#x27;highestLevel&#x27;, &quot;0&quot;);
       this.highestLevel &#x3D; 0;
-  
-     localStorage.setItem(&#x27;score&#x27;, &quot;0&quot;);
-     this.score &#x3D; 0;
+
+      localStorage.setItem(&#x27;score&#x27;, &quot;0&quot;);
+      this.score &#x3D; 0;
     } else {
-      
+
     }
 
 
@@ -651,22 +652,22 @@ export interface DialogData {
   onNext: () &#x3D;&gt; void;
   word: {
     word: string;
-    vergleich:{
+    vergleich: {
       yourGraph: boolean;
       referenzGraph: boolean;
-    }  ,index?: number;
+    }, index?: number;
 
 
   };
 }
 
 @Component({
-  selector: &#x27;dialog-data-example-dialog&#x27;,
-  templateUrl: &#x27;dialog-data-example-dialog.html&#x27;,
+  selector: &#x27;app-dialog-data-example-dialog&#x27;,
+  templateUrl: &#x27;dialog-evaluation.html&#x27;,
 })
-export class DialogDataExampleDialog {
-  constructor(  public dialogRef: MatDialogRef&lt;DialogDataExampleDialog&gt;,
-        @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+export class DialogDataComponent {
+  constructor(public dialogRef: MatDialogRef&lt;DialogDataComponent&gt;,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   onNoClick(): void {
     this.dialogRef.close();

@@ -311,16 +311,12 @@ interface User{
   templateUrl: &#x27;./profile.component.html&#x27;,
   styleUrls: [&#x27;./profile.component.css&#x27;]
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
   count$: Observable&lt;User&gt;;
 
   constructor(private store: Store&lt;{ count: User }&gt;) {
     this.count$ &#x3D; this.store.select(&#x27;count&#x27;);
   }
-
-  ngOnInit(): void {
-  }
-
 }
 </code></pre>
     </div>

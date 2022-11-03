@@ -70,12 +70,6 @@
 
 
 
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-    </p>
 
 
 <section>
@@ -134,26 +128,12 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#count$" >count$</a>
+                                <a href="#currentUser$" >currentUser$</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
 
 
@@ -216,49 +196,7 @@
 
 
 
-    <section>
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/app/component/navigation/navigation.component.ts:25</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
     <section>
     
     <h3 id="inputs">
@@ -268,10 +206,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="count$"></a>
+                    <a name="currentUser$"></a>
                     <span class="name">
-                        <span ><b>count$</b></span>
-                        <a href="#count$"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>currentUser$</b></span>
+                        <a href="#currentUser$"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -296,7 +234,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
 import { Store } from &#x27;@ngrx/store&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
 
@@ -313,16 +251,12 @@ interface User{
   templateUrl: &#x27;./navigation.component.html&#x27;,
   styleUrls: [&#x27;./navigation.component.css&#x27;]
 })
-export class NavigationComponent implements OnInit {
-  count$: Observable&lt;User&gt;;
+export class NavigationComponent  {
+  currentUser$: Observable&lt;User&gt;;
 
-  constructor(private store: Store&lt;{ count: User }&gt;) {
-    this.count$ &#x3D; this.store.select(&#x27;count&#x27;);
+  constructor(private store: Store&lt;{ user: User }&gt;) {
+    this.currentUser$ &#x3D; this.store.select(&#x27;user&#x27;);
   }
-
-  ngOnInit(): void {
-  }
-
 }
 </code></pre>
     </div>
@@ -355,9 +289,9 @@ export class NavigationComponent implements OnInit {
     &lt;/div&gt;
 
     &lt;div class&#x3D;&quot;navbar-end&quot;&gt;
-      &lt;div *ngIf&#x3D;&quot;(count$ | async)!.username&quot;&gt;
+      &lt;div *ngIf&#x3D;&quot;(currentUser$ | async)!.username&quot;&gt;
         &lt;div class&#x3D;&quot;navbar-item has-dropdown is-hoverable&quot;&gt;
-          &lt;a class&#x3D;&quot;navbar-link&quot;&gt; {{ (count$ | async)!.username }}&lt;/a&gt;
+          &lt;a class&#x3D;&quot;navbar-link&quot;&gt; {{ (currentUser$ | async)!.username }}&lt;/a&gt;
 
           &lt;div class&#x3D;&quot;navbar-dropdown&quot;&gt;
             &lt;a class&#x3D;&quot;navbar-item&quot; routerLink &#x3D; &#x27;profile&#x27; routerLinkActive &#x3D; &quot;active&quot;&gt; View Profile &lt;/a&gt;
@@ -374,7 +308,7 @@ export class NavigationComponent implements OnInit {
 
       &lt;/div&gt;
     &lt;/div&gt;
-    &lt;div *ngIf&#x3D;&quot;!(count$ | async)!.username&quot; class&#x3D;&quot;buttons&quot;&gt;
+    &lt;div *ngIf&#x3D;&quot;!(currentUser$ | async)!.username&quot; class&#x3D;&quot;buttons&quot;&gt;
       &lt;a
         class&#x3D;&quot;button is-light&quot;
         routerLink&#x3D;&quot;login&quot;
@@ -429,8 +363,8 @@ export class NavigationComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nav class="navbar" role="navigation" aria-label="main navigation">  <div class="navbar-brand">    <a class="navbar-item" href="http://localhost:4200/game">      <img />    </a>    <a      role="button"      class="navbar-burger"      aria-label="menu"      aria-expanded="false"      data-target="navbarBasicExample"    >      <span aria-hidden="true"></span>      <span aria-hidden="true"></span>      <span aria-hidden="true"></span>    </a>  </div>  <div id="navbarBasicExample" class="navbar-menu">    <div class="navbar-start">      <a class="navbar-item" href="http://localhost:4200/home"> Home </a>      <a class="navbar-item" href="http://localhost:4200/docu"> Documentation </a>    </div>    <div class="navbar-end">      <div *ngIf="(count$ | async)!.username">        <div class="navbar-item has-dropdown is-hoverable">          <a class="navbar-link"> {{ (count$ | async)!.username }}</a>          <div class="navbar-dropdown">            <a class="navbar-item" routerLink = \'profile\' routerLinkActive = "active"> View Profile </a>            <a class="navbar-item" href="http://localhost:8080/auth/realms/master/account" > Edit-Profile </a>            <hr class="navbar-divider" />            <a              class="navbar-item"              href="http://localhost:8080/auth/realms/master/protocol/openid-connect/logout?redirect_uri=http://localhost:4200/home"              >Logout            </a>          </div>        </div>      </div>    </div>    <div *ngIf="!(count$ | async)!.username" class="buttons">      <a        class="button is-light"        routerLink="login"        routerLinkActive="active"      >        Log in      </a>    </div>  </div></nav></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DialogComponent', 'selector': 'app-dialog'},{'name': 'DialogDataExampleDialog', 'selector': 'dialog-data-example-dialog'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainPageComponent', 'selector': 'app-main-page'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'PuzzleGameComponent', 'selector': 'app-puzzle-game'},{'name': 'StartGameComponent', 'selector': 'app-start-game'},{'name': 'TableComponent', 'selector': 'app-table'}];
+        var COMPONENT_TEMPLATE = '<div><nav class="navbar" role="navigation" aria-label="main navigation">  <div class="navbar-brand">    <a class="navbar-item" href="http://localhost:4200/game">      <img />    </a>    <a      role="button"      class="navbar-burger"      aria-label="menu"      aria-expanded="false"      data-target="navbarBasicExample"    >      <span aria-hidden="true"></span>      <span aria-hidden="true"></span>      <span aria-hidden="true"></span>    </a>  </div>  <div id="navbarBasicExample" class="navbar-menu">    <div class="navbar-start">      <a class="navbar-item" href="http://localhost:4200/home"> Home </a>      <a class="navbar-item" href="http://localhost:4200/docu"> Documentation </a>    </div>    <div class="navbar-end">      <div *ngIf="(currentUser$ | async)!.username">        <div class="navbar-item has-dropdown is-hoverable">          <a class="navbar-link"> {{ (currentUser$ | async)!.username }}</a>          <div class="navbar-dropdown">            <a class="navbar-item" routerLink = \'profile\' routerLinkActive = "active"> View Profile </a>            <a class="navbar-item" href="http://localhost:8080/auth/realms/master/account" > Edit-Profile </a>            <hr class="navbar-divider" />            <a              class="navbar-item"              href="http://localhost:8080/auth/realms/master/protocol/openid-connect/logout?redirect_uri=http://localhost:4200/home"              >Logout            </a>          </div>        </div>      </div>    </div>    <div *ngIf="!(currentUser$ | async)!.username" class="buttons">      <a        class="button is-light"        routerLink="login"        routerLinkActive="active"      >        Log in      </a>    </div>  </div></nav></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DialogDataComponent', 'selector': 'app-dialog-data-example-dialog'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'PuzzleGameComponent', 'selector': 'app-puzzle-game'},{'name': 'StartGameComponent', 'selector': 'app-start-game'},{'name': 'TableComponent', 'selector': 'app-table'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'NavigationComponent'};
 </script>

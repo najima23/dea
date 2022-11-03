@@ -4,17 +4,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { NavigationComponent } from './component/navigation/navigation.component';
-import { MainPageComponent } from './component/main-page/main-page.component';
+import { TutorialPageComponent } from './component/tutorial-page/tutorial-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './component/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { DialogComponent } from './shared/dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { AuthGuard } from './auth.guard';
 import { StoreModule } from '@ngrx/store';
-import { counterReducer, levelReducer } from './counter.reducer';
+import { userReducer, levelReducer } from './user.reducer';
 import { GojsAngularModule } from "gojs-angular";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
@@ -22,8 +21,9 @@ import { ProfileComponent } from './profile/profile.component'; // Angular CLI e
 import { StartGameModule } from './start-game/start-game.module';
 import { StartGameComponent } from './start-game/start-game.component';
 import { HttpClientModule } from '@angular/common/http';
-import { DialogDataExampleDialog, PuzzleGameComponent } from './puzzle-game/puzzle-game.component';
+import { DialogDataComponent, PuzzleGameComponent } from './puzzle-game/puzzle-game.component';
 import { CommonModule } from '@angular/common';
+
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -34,11 +34,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
         clientId: 'puzzle-frontend',
       },
       initOptions: {
-
         pkceMethod: 'S256',
-        // must match to the configured value in keycloak
-        redirectUri: 'http://localhost:4200/your_url',
-        // this will solved the error
+        redirectUri: 'http://localhost:4200/',
         checkLoginIframe: false
       }
     });
@@ -49,7 +46,7 @@ const appRoutes: Routes = [
   { path: '', component: StartGameComponent },
   { path: 'login', redirectTo: '/startgame' },
   { path: 'profile', component: ProfileComponent },
-  { path: 'docu', component: MainPageComponent },
+  { path: 'docu', component: TutorialPageComponent },
 
   {
     path: 'home',
@@ -69,11 +66,10 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     NavigationComponent,
-    DialogDataExampleDialog,
+    DialogDataComponent,
     FooterComponent,
-    MainPageComponent,
+    TutorialPageComponent,
     LoginComponent,
-    DialogComponent,
     ProfileComponent,
     PuzzleGameComponent,
   ],
@@ -88,10 +84,10 @@ const appRoutes: Routes = [
     KeycloakAngularModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } 
+      { enableTracing: true }
     ),
     BrowserAnimationsModule,
-    StoreModule.forRoot({ count: counterReducer, level: levelReducer }),
+    StoreModule.forRoot({ user: userReducer, level: levelReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 12,
       logOnly: environment.production,
