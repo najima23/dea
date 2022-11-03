@@ -629,18 +629,8 @@
   },
   1: {
     task: &#x27;Stellen Sie die nachfolgenden Sprache als deterministische endliche Automaten dar \n L &#x3D; {w | w ∈ {0,1}∗ der nur Wörter akzeptiert, die mit 0 anfangen}&#x27;,
-    nodes: [
-      { id: 0, text: &quot;A&quot; },
-      { id: 1, text: &quot;B&quot;, figure: &#x27;Ring&#x27; },
-      { id: 2, text: &quot;C&quot; }
-
-    ],
-    links: [
-      { key: 0, from: 0, to: 1, text: &#x27;0&#x27; },
-      { key: 1, from: 0, to: 2, text: &#x27;1&#x27; },
-      { key: 2, from: 2, to: 2, text: &#x27;0,1&#x27; },
-      { key: 4, from: 1, to: 1, text: &#x27;0,1&#x27; },
-    ],
+    nodes: [],
+    links: [],
     rightWords: function () {
       const wordGenerator &#x3D; new WordGenerator();
       const words &#x3D; wordGenerator.generateWords({
@@ -683,18 +673,8 @@
   },
   2: {
     task: &#x27;Stellen Sie die nachfolgenden Sprache als deterministische endliche Automaten dar \n L &#x3D; {w | w ∈ {0,1}∗ und an jeder ungerade Position von w eine 1 steht}&#x27;,
-    nodes: [
-      { id: 0, text: &quot;A&quot;, figure: &#x27;Ring&#x27; },
-      { id: 1, text: &quot;B&quot;, figure: &#x27;Ring&#x27; },
-      { id: 2, text: &quot;C&quot; }
-    ],
-    links: [
-      { key: 0, from: 0, to: 1, text: &#x27;1&#x27; },
-      { key: 1, from: 1, to: 0, text: &#x27;0,1&#x27; },
-      { key: 2, from: 0, to: 2, text: &#x27;0&#x27; },
-      { key: 3, from: 2, to: 2, text: &#x27;0,1&#x27; }
-
-    ],
+    nodes: [],
+    links: [],
     rightWords: function () {
       const wordGenerator &#x3D; new WordGenerator();
       const words &#x3D; wordGenerator.generateWords({
@@ -737,21 +717,8 @@
   },
   3: {
     task: &#x27;Stellen Sie die nachfolgenden Sprache als deterministische endliche Automaten dar \n L &#x3D; {w | w ∈ {0,1}∗ und w enthaelt das Teilwort 110}&#x27;,
-    nodes: [
-      { id: 0, text: &quot;A&quot; },
-      { id: 1, text: &quot;B&quot; },
-      { id: 2, text: &quot;C&quot; },
-      { id: 3, text: &quot;D&quot;, figure: &#x27;Ring&#x27; }
-    ],
-    links: [
-      { key: 0, from: 0, to: 1, text: &#x27;1&#x27; },
-      { key: 1, from: 0, to: 0, text: &#x27;0&#x27; },
-      { key: 2, from: 1, to: 0, text: &#x27;0&#x27; },
-      { key: 3, from: 1, to: 2, text: &#x27;1&#x27; },
-      { key: 4, from: 2, to: 2, text: &#x27;1&#x27; },
-      { key: 5, from: 2, to: 3, text: &#x27;0&#x27; },
-      { key: 6, from: 3, to: 3, text: &#x27;0,1&#x27; }
-    ],
+    nodes: [],
+    links: [],
     rightWords: function () {
       const wordGenerator &#x3D; new WordGenerator();
       const words &#x3D; wordGenerator.generateWords({
@@ -802,19 +769,8 @@
   },
   4: {
     task: &#x27;Stellen Sie die nachfolgenden Sprache als deterministischen endlichen Automaten dar L &#x3D; {w | w ∈ {0,1}}∗ und w hat eine Länge von maximal 2&#x27;,
-    nodes: [
-      { id: 0, text: &quot;A&quot;, },
-      { id: 1, text: &quot;B&quot;, },
-      { id: 2, text: &quot;C&quot;, figure: &#x27;Ring&#x27; },
-      { id: 3, text: &quot;D&quot; }
-    ],
-    links: [
-      { key: &quot;Start&quot;, from: -1, to: 0, text: &#x27;Start&#x27; },
-      { key: 0, from: 0, to: 1, text: &#x27;0,1&#x27; },
-      { key: 1, from: 1, to: 2, text: &#x27;0,1&#x27; },
-      { key: 2, from: 2, to: 3, text: &#x27;0,1&#x27; },
-      { key: 3, from: 3, to: 3, text: &#x27;0,1&#x27; },
-    ],
+    nodes: [],
+    links: [],
     solution: {
       nodes: [
         { id: 0, text: &quot;A&quot;, },
@@ -840,16 +796,8 @@
   },
   5: {
     task: &#x27;̈Gegeben sei die Sprache L1 &#x3D; {w ∈ {0} *| |w| ist durch 3 teilbar}. Geben Sie einen deterministischen endlichen Automaten in Graphdarstellung an, der L1 erkennt&#x27;,
-    nodes: [
-      { id: 0, text: &quot;A&quot;, color: &quot;white&quot;, figure: &#x27;Ring&#x27; },
-      { id: 1, text: &quot;B&quot; },
-      { id: 2, text: &quot;C&quot; },
-    ],
-    links: [
-      { key: 0, from: 0, to: 1, text: &#x27;0&#x27; },
-      { key: 1, from: 1, to: 2, text: &#x27;0&#x27; },
-      { key: 2, from: 2, to: 0, text: &#x27;0&#x27; },
-    ],
+    nodes: [],
+    links: [],
     solution: {
       nodes: [
         { id: 0, text: &quot;A&quot;, color: &quot;white&quot;, figure: &#x27;Ring&#x27; },
@@ -873,21 +821,13 @@
   },
   6: {
     task: &#x27;̈Gegeben sei die Sprache L &#x3D; {w ∈ {0} * : |w| ≥ 2 }. Geben Sie einen deterministischen endlichen Automaten in Graphdarstellung an, der L erkennt&#x27;,
-    nodes: [
-      { id: 0, text: &quot;A&quot;},
-      { id: 1, text: &quot;B&quot; },
-      { id: 2, text: &quot;C&quot;, figure: &#x27;Ring&#x27;},
-    ],
-    links: [
-      { key: 0, from: 0, to: 1, text: &#x27;0,1&#x27; },
-      { key: 1, from: 1, to: 2, text: &#x27;0,1&#x27; },
-      { key: 2, from: 2, to: 2, text: &#x27;0,1&#x27; },
-    ],
+    nodes: [],
+    links: [],
     solution: {
       nodes: [
-        { id: 0, text: &quot;A&quot;},
+        { id: 0, text: &quot;A&quot; },
         { id: 1, text: &quot;B&quot; },
-        { id: 2, text: &quot;C&quot;, figure: &#x27;Ring&#x27;},
+        { id: 2, text: &quot;C&quot;, figure: &#x27;Ring&#x27; },
       ],
       links: [
         { key: &quot;Start&quot;, from: -1, to: 0, text: &#x27;Start&#x27; },
@@ -906,24 +846,14 @@
   },
   7: {
     task: &#x27;̈Gegeben sei die Sprache L &#x3D; {w ∈ {0} * : |w| ≤ 2 }. Geben Sie einen deterministischen endlichen Automaten in Graphdarstellung an, der L erkennt&#x27;,
-    nodes: [
-      { id: 0, text: &quot;A&quot;, figure: &#x27;Ring&#x27;},
-      { id: 1, text: &quot;B&quot;, figure: &#x27;Ring&#x27;},
-      { id: 2, text: &quot;C&quot;, figure: &#x27;Ring&#x27;},
-      { id: 3, text: &quot;D&quot;}
-    ],
-    links: [
-      { key: 0, from: 0, to: 1, text: &#x27;0,1&#x27; },
-      { key: 1, from: 1, to: 2, text: &#x27;0,1&#x27; },
-      { key: 2, from: 2, to: 3, text: &#x27;0,1&#x27; },
-      { key: 3, from: 3, to: 3, text: &#x27;0,1&#x27; }
-    ],
+    nodes: [],
+    links: [],
     solution: {
       nodes: [
-        { id: 0, text: &quot;A&quot;, figure: &#x27;Ring&#x27;},
-        { id: 1, text: &quot;B&quot;, figure: &#x27;Ring&#x27;},
-        { id: 2, text: &quot;C&quot;, figure: &#x27;Ring&#x27;},
-        { id: 3, text: &quot;D&quot;}
+        { id: 0, text: &quot;A&quot;, figure: &#x27;Ring&#x27; },
+        { id: 1, text: &quot;B&quot;, figure: &#x27;Ring&#x27; },
+        { id: 2, text: &quot;C&quot;, figure: &#x27;Ring&#x27; },
+        { id: 3, text: &quot;D&quot; }
       ],
       links: [
         { key: &quot;Start&quot;, from: -1, to: 0, text: &#x27;Start&#x27; },
