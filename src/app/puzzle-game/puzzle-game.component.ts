@@ -411,7 +411,7 @@ export class PuzzleGameComponent implements OnChanges {
 
   resetGame() {
 
-    if (confirm('Bist du dir sicher das du alle Leveln und deine Stand zurücksetzen möchtest?')) {
+    if (confirm('Bist du dir sicher, dass du alle Level und deinen Punktestand zurücksetzen möchtest?')) {
       localStorage.setItem('activeLevel', "0");
       this.activeLevel = 0;
   

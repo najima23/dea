@@ -11,3 +11,5 @@ export const counterReducer = createReducer(
 export const levelReducer = createReducer(
   localStorage.getItem("highestLevel"),
 );
+
+//hier
